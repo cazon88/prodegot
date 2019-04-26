@@ -18,6 +18,33 @@ USE `prodegot`;
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
 
 --
+-- Table structure for table `personajes`
+--
+
+DROP TABLE IF EXISTS `personajes`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+ SET character_set_client = utf8mb4 ;
+CREATE TABLE `personajes` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `nombre` varchar(45) DEFAULT NULL,
+  `vive` tinyint(1) DEFAULT NULL,
+  `muere` tinyint(1) DEFAULT NULL,
+  `whitewalker` tinyint(1) DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=26 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `personajes`
+--
+
+LOCK TABLES `personajes` WRITE;
+/*!40000 ALTER TABLE `personajes` DISABLE KEYS */;
+INSERT INTO `personajes` VALUES (1,'Jon Snow',1,0,0),(2,'Daenerys Targaryen',1,0,0),(3,'Sansa Stark',1,0,0),(4,'Arya Stark',1,0,0),(5,'Bran Stark',1,0,0),(6,'Cersei Lannister',1,0,0),(7,'Jaime Lannister',1,0,0),(8,'Tyrion Lannister',1,0,0),(9,'Theon Greyjoy',1,0,0),(10,'Yara Greyjoy',1,0,0),(11,'Euron Greyjoy',1,0,0),(12,'Samwell Tarly',1,0,0),(13,'Gilly',1,0,0),(14,'Nigth King',1,0,0),(15,'Melisandre',1,0,0),(16,'Jorah Mormont',1,0,0),(17,'El Perro',1,0,0),(18,'La Montaña',1,0,0),(19,'Lord Varys',1,0,0),(20,'Podryck Payne',1,0,0),(21,'Gendry Baratheon',1,0,0),(22,'Gusano Gris',1,0,0),(23,'Missandei',1,0,0),(24,'Davos Seaworth',1,0,0),(25,'Bronn Stokeworth',1,0,0);
+/*!40000 ALTER TABLE `personajes` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
 -- Table structure for table `prode`
 --
 
@@ -27,7 +54,7 @@ DROP TABLE IF EXISTS `prode`;
 CREATE TABLE `prode` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `id_usuario` int(11) NOT NULL,
-  `personaje` varchar(45) DEFAULT NULL,
+  `id_personaje` int(11) DEFAULT NULL,
   `vive` tinyint(1) DEFAULT NULL,
   `muere` tinyint(1) DEFAULT NULL,
   `whitewalker` tinyint(1) DEFAULT NULL,
@@ -78,4 +105,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2019-04-25 21:28:45
+-- Dump completed on 2019-04-25 22:12:18
