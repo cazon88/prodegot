@@ -92,7 +92,7 @@ if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
             </div>
         </div>
 
-        <form>
+        <form action="response.php">
             <table class="table table-striped">
                 <tr>
                     <th>Personaje</th>
