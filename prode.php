@@ -1,3 +1,13 @@
+<?php
+// Initialize the session
+session_start();
+
+// Check if the user is logged in, if not then redirect him to login page
+if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
+    header("location: login.php");
+    exit;
+}
+?>
 
 <?php
     $characters = [
@@ -63,10 +73,17 @@
 
         <link rel="stylesheet" href="css/normalize.css">
         <link rel="stylesheet" href="css/main.css">
-
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.css">
         <meta name="theme-color" content="#fafafa">
     </head>
     <body>
+    <div class="page-header">
+        <h1>Buenas, <b><?php echo htmlspecialchars($_SESSION["username"]); ?></b>. Bienvenido al mejor prode GoT!</h1>
+    </div>
+    <p>
+        <a href="reset-password.php" class="btn btn-warning">Cambiar contrasena</a>
+        <a href="logout.php" class="btn btn-danger">Cerrar sesion</a>
+    </p>
     <form>
         <table>
             <tr>
@@ -121,13 +138,6 @@
                         <?php } ?>
                     </select>
                 </td>
-            </tr>
-        </table>
-        <table>
-            <tr>
-                <td> Usiario </td>
-                <td> <input type="text"> </td>
-                <td> <input type="submit"> </td>
             </tr>
         </table>
         <table>
