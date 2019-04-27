@@ -22,37 +22,37 @@ if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
             'name' => 'Daenerys Targaryen'
         ],
         [
-            'id' => '1',
+            'id' => '3',
             'status' => 'live',
             'name' => 'Sansa Stark'
         ],
         [
-            'id' => '1',
+            'id' => '4',
             'status' => 'live',
             'name' => 'Arya Stark'
         ],
         [
-            'id' => '2',
+            'id' => '5',
             'status' => 'live',
             'name' => 'Bran Stark'
         ],
         [
-            'id' => '1',
+            'id' => '6',
             'status' => 'live',
             'name' => 'Sansa Stark'
         ],
         [
-            'id' => '1',
+            'id' => '7',
             'status' => 'live',
             'name' => 'Cersei Lannister'
         ],
         [
-            'id' => '1',
+            'id' => '8',
             'status' => 'live',
             'name' => 'Jaime Lannister'
         ],
         [
-            'id' => '1',
+            'id' => '9',
             'status' => 'live',
             'name' => 'Tyrion Lannister'
         ],
@@ -77,77 +77,86 @@ if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
         <meta name="theme-color" content="#fafafa">
     </head>
     <body>
-    <div class="page-header">
-        <h1>Buenas, <b><?php echo htmlspecialchars($_SESSION["username"]); ?></b>. Bienvenido al mejor prode GoT!</h1>
-    </div>
-    <p>
-        <a href="reset-password.php" class="btn btn-warning">Cambiar contrasena</a>
-        <a href="logout.php" class="btn btn-danger">Cerrar sesion</a>
-    </p>
-    <form>
-        <table>
-            <tr>
-                <th>Personaje</th>
-                <th>Vive</th>
-                <th>Muere</th>
-                <th>WhiteWalker</th>
-            </tr>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-8">
+                <h1>Prode GOT</h1>
+                <h2>Bienvenido al mejor prode GoT!</h2>
+            </div>
+            <div class="col-md-4">
+                <h4><b><?php echo htmlspecialchars($_SESSION["username"]); ?></b></h4>
+                <p>
+                    <a href="reset-password.php" class="btn btn-xs btn-warning">Cambiar contrasena</a>
+                    <a href="logout.php" class="btn btn-xs btn-danger">Cerrar sesion</a>
+                </p>
+            </div>
+        </div>
 
-            <?php foreach($characters as $key=>$value){ ?>
+        <form>
+            <table class="table table-striped">
                 <tr>
-                    <td><?php echo $value['name'] ; ?></td>
-                    <td><input type="radio" name="<?php echo $value['id'] ; ?>" value="live" /></td>
-                    <td><input type="radio" name="<?php echo $value['id'] ; ?>" value="dead" /></td>
-                    <td><input type="radio" name="<?php echo $value['id'] ; ?>" value="whitewalker" /></td>
+                    <th>Personaje</th>
+                    <th>Vive</th>
+                    <th>Muere</th>
+                    <th>WhiteWalker</th>
                 </tr>
-            <?php } ?>
-        </table>
-        <table>
-            <tr>
-                <td>¿Daenerys esta embarazada?</td>
-                <td>
-                    si <input type="radio" name="DaenerysPrecnancy" value="true" />
-                    no <input type="radio" name="DaenerysPrecnancy" value="false" />
-                </td>
-            </tr>
-            <tr>
-                <td>Arya completa su lista?</td>
-                <td>
-                    si <input type="radio" name="AryaList" value="true" />
-                    no <input type="radio" name="AryaList" value="false" />
-                </td>
-            </tr>
-            <tr>
-                <td>¿Quien mata al Nigth King?</td>
-                <td>
-                    <select name="killNigthking">
-                        <option disabled selected>seleciona...</option>
-                        <?php foreach($characters as $key=>$value){ ?>
-                            <option value="<?php echo $value['id'] ; ?>"><?php echo $value['name'] ; ?></option>
-                        <?php } ?>
-                    </select>
-                </td>
-            </tr>
-            <tr>
-                <td>¿Quien se queda con el trono?</td>
-                <td>
-                    <select name="hasTheThrone">
-                        <option disabled selected>seleciona...</option>
-                        <?php foreach($characters as $key=>$value){ ?>
-                            <option value="<?php echo $value['id'] ; ?>"><?php echo $value['name'] ; ?></option>
-                        <?php } ?>
-                    </select>
-                </td>
-            </tr>
-        </table>
-        <table>
-            <tr>
-                <td>
-                    <button type="submit">Enviar</button>
-                </td>
-            </tr>
-        </table>
-    </form>
+
+                <?php foreach($characters as $key=>$value){ ?>
+                    <tr>
+                        <td><?php echo $value['name'] ; ?></td>
+                        <td><input type="radio" name="<?php echo $value['id'] ; ?>" value="live" /></td>
+                        <td><input type="radio" name="<?php echo $value['id'] ; ?>" value="dead" /></td>
+                        <td><input type="radio" name="<?php echo $value['id'] ; ?>" value="whitewalker" /></td>
+                    </tr>
+                <?php } ?>
+            </table>
+            <table class="table table-striped">
+                <tr>
+                    <td>¿Daenerys esta embarazada?</td>
+                    <td>
+                        si <input type="radio" name="DaenerysPrecnancy" value="true" />
+                        no <input type="radio" name="DaenerysPrecnancy" value="false" />
+                    </td>
+                </tr>
+                <tr>
+                    <td>Arya completa su lista?</td>
+                    <td>
+                        si <input type="radio" name="AryaList" value="true" />
+                        no <input type="radio" name="AryaList" value="false" />
+                    </td>
+                </tr>
+                <tr>
+                    <td>¿Quien mata al Nigth King?</td>
+                    <td>
+                        <select name="killNigthking">
+                            <option disabled selected>seleciona...</option>
+                            <?php foreach($characters as $key=>$value){ ?>
+                                <option value="<?php echo $value['id'] ; ?>"><?php echo $value['name'] ; ?></option>
+                            <?php } ?>
+                        </select>
+                    </td>
+                </tr>
+                <tr>
+                    <td>¿Quien se queda con el trono?</td>
+                    <td>
+                        <select name="hasTheThrone">
+                            <option disabled selected>seleciona...</option>
+                            <?php foreach($characters as $key=>$value){ ?>
+                                <option value="<?php echo $value['id'] ; ?>"><?php echo $value['name'] ; ?></option>
+                            <?php } ?>
+                        </select>
+                    </td>
+                </tr>
+            </table>
+            <table>
+                <tr>
+                    <td>
+                        <button type="submit" class="btn btn-primary btn-lg">Enviar</button>
+                    </td>
+                </tr>
+            </table>
+        </form>
+    </div>
     <script src="js/vendor/modernizr-3.7.1.min.js"></script>
     <script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
     <script>window.jQuery || document.write('<script src="js/vendor/jquery-3.3.1.min.js"><\/script>')</script>
