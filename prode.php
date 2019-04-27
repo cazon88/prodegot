@@ -72,18 +72,17 @@ if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
         <!-- Place favicon.ico in the root directory -->
 
         <link rel="stylesheet" href="css/normalize.css">
-        <link rel="stylesheet" href="css/main.css">
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.css">
+        <link rel="stylesheet" href="css/main.css">
         <meta name="theme-color" content="#fafafa">
     </head>
     <body>
     <div class="container">
         <div class="row">
-            <div class="col-md-8">
-                <h1>Prode GOT</h1>
-                <h2>Bienvenido al mejor prode GoT!</h2>
+            <div class="col-md-3 col-md-push-3 col-xs-6">
+                <img src="img/logo.png" class="img-responsive">
             </div>
-            <div class="col-md-4">
+            <div class="col-md-4 col-md-push-3">
                 <h4><b><?php echo htmlspecialchars($_SESSION["username"]); ?></b></h4>
                 <p>
                     <a href="reset-password.php" class="btn btn-xs btn-warning">Cambiar contrasena</a>
@@ -91,10 +90,12 @@ if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
                 </p>
             </div>
         </div>
-
-        <form data-js="prode" action="response.php">
-            <table class="table table-striped">
+        <div class="row">
+            <div class="col-md-6 col-md-push-3">
+                <form data-js="prode" action="response.php">
+            <table class="table">
                 <tr>
+                    <th></th>
                     <th>Personaje</th>
                     <th>Vive</th>
                     <th>Muere</th>
@@ -103,6 +104,7 @@ if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
 
                 <?php foreach($characters as $key=>$value){ ?>
                     <tr>
+                        <td><img class="" src="https://via.placeholder.com/50"></td>
                         <td><?php echo $value['name'] ; ?></td>
                         <td><input type="radio" name="<?php echo $value['id'] ; ?>" value="live" /></td>
                         <td><input type="radio" name="<?php echo $value['id'] ; ?>" value="dead" /></td>
@@ -110,7 +112,7 @@ if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
                     </tr>
                 <?php } ?>
             </table>
-            <table class="table table-striped">
+            <table class="table">
                 <tr>
                     <td>¿Daenerys esta embarazada?</td>
                     <td>
@@ -156,6 +158,8 @@ if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
                 </tr>
             </table>
         </form>
+            </div>
+        </div>
     </div>
     <script src="js/vendor/modernizr-3.7.1.min.js"></script>
     <script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>

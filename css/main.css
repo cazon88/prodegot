@@ -293,3 +293,12 @@ textarea {
 }
 
 
+
+
+body {
+    background: url("../img/bg.jpg");
+}
+
+td{
+    vertical-align: middle!important;
+}

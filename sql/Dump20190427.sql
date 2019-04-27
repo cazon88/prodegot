@@ -1,4 +1,4 @@
-CREATE DATABASE  IF NOT EXISTS `prodegot` /*!40100 DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci */ /*!80016 DEFAULT ENCRYPTION='N' */;
+CREATE DATABASE  IF NOT EXISTS `prodegot` /*!40100 DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4 */ /*!80016 DEFAULT ENCRYPTION='N' */;
 USE `prodegot`;
 -- MySQL dump 10.13  Distrib 8.0.16, for macos10.14 (x86_64)
 --
@@ -31,7 +31,7 @@ CREATE TABLE `characters` (
   PRIMARY KEY (`id`),
   KEY `fk_status_idx` (`id_status`),
   CONSTRAINT `fk_status` FOREIGN KEY (`id_status`) REFERENCES `status` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=26 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=26 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -84,7 +84,7 @@ CREATE TABLE `prode` (
   PRIMARY KEY (`id`),
   UNIQUE KEY `usuario_UNIQUE` (`id_user`),
   CONSTRAINT `fk_user` FOREIGN KEY (`id_user`) REFERENCES `users` (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -108,7 +108,7 @@ CREATE TABLE `status` (
   `value` varchar(45) NOT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `valor_UNIQUE` (`value`)
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -117,7 +117,7 @@ CREATE TABLE `status` (
 
 LOCK TABLES `status` WRITE;
 /*!40000 ALTER TABLE `status` DISABLE KEYS */;
-INSERT INTO `status` VALUES (2,'muerto'),(1,'vivo'),(3,'white walker');
+INSERT INTO `status` VALUES (2,'live'),(1,'dead'),(3,'white walker');
 /*!40000 ALTER TABLE `status` ENABLE KEYS */;
 UNLOCK TABLES;
 
