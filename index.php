@@ -7,7 +7,7 @@
 	}
 	$uri .= $_SERVER['HTTP_HOST'];
 	// logeed
-	header('Location: '.$uri.'/prode.php');
+	header('Location: '.$uri.'/login.php');
 	exit;
 ?>
 
