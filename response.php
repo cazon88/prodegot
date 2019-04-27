@@ -7,6 +7,11 @@
         exit;
     }
 
+    if ( isset( $_POST['submit'] ) ) {
+        echo $_REQUEST;
+    }
+
+
     $responseSuccess = [
         "status" => 200,
         "message" => "tu respuesta fue guardada"

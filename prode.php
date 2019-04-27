@@ -92,7 +92,7 @@ if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
             </div>
         </div>
 
-        <form action="response.php">
+        <form data-js="prode" action="response.php">
             <table class="table table-striped">
                 <tr>
                     <th>Personaje</th>
@@ -167,6 +167,31 @@ if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
         ga('create', 'UA-XXXXX-Y', 'auto'); ga('set','transport','beacon'); ga('send', 'pageview')
     </script>
     <script src="https://www.google-analytics.com/analytics.js" async defer></script>
+
+    <script>
+        $(document).ready(function() {
+            console.log("ready")
+            $('[data-js="prode"]').submit(function(e) {
+
+                e.preventDefault(); // avoid to execute the actual submit of the form.
+
+                var form = $(this);
+                var url = form.attr('action');
+
+                $.ajax({
+                    type: "POST",
+                    url: url,
+                    data: form.serialize(), // serializes the form's elements.
+                    success: function(data)
+                    {
+                        alert(data.message); // show response from the php script.
+                    }
+                });
+
+
+            });
+        })
+    </script>
     </body>
 </html>
 
