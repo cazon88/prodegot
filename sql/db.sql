@@ -86,6 +86,8 @@ CREATE TABLE `prode` (
   `missandey` int(11) NOT NULL,
   `davos_seaworth` int(11) NOT NULL,
   `bronn_stokeworth` int(11) NOT NULL,
+  `beric_dondarrion` int(11) NOT NULL,
+  `tormund_giantsbane` int(11) NOT NULL,
   `created_at` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (`id`),
   UNIQUE KEY `usuario_UNIQUE` (`id_user`),
