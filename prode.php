@@ -11,17 +11,12 @@ if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
 // Include config file
 require_once "config.php";
 
-/*$user_id = $_SESSION["id"];
+$user_id = $_SESSION["id"];
 $sql = "SELECT score FROM users WHERE id = $user_id";
-
 $result = mysqli_query($link,$sql);
-
 $row = mysqli_fetch_assoc($result);
 
 $user_score = $row["score"];
-
-//$result = mysqli_query($link,$sql);*/
-$user_score = 0;
 
 $sql = "SELECT id,name FROM characters";
 $result = mysqli_query($link,$sql);
