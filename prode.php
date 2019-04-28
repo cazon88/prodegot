@@ -49,9 +49,13 @@ while($row=mysqli_fetch_assoc($result)) {
         <meta name="theme-color" content="#fafafa">
     </head>
     <body>
+    <div class="header">
+        <img height="auto" width="100%" src="img/header.png">
+    </div>
     <div class="container">
+
         <div class="row">
-            <div class="col-md-3 col-md-push-3 col-xs-6">
+            <div class="col-md-3 col-md-push-2 col-xs-6">
                 <img src="img/logo.png" class="img-responsive">
             </div>
             <div class="col-md-4 col-md-push-3">
@@ -63,73 +67,73 @@ while($row=mysqli_fetch_assoc($result)) {
             </div>
         </div>
         <div class="row">
-            <div class="col-md-6 col-md-push-3">
+            <div class="col-md-8 col-md-push-2">
                 <form data-js="prode" action="response.php">
-            <table class="table">
-                <tr>
-                    <th></th>
-                    <th>Personaje</th>
-                    <th>Vive</th>
-                    <th>Muere</th>
-                    <th>WhiteWalker</th>
-                </tr>
+                    <table class="table">
+                        <tr>
+                            <th></th>
+                            <th>Personaje</th>
+                            <th>Vive</th>
+                            <th>Muere</th>
+                            <th>WhiteWalker</th>
+                        </tr>
 
-                <?php foreach($characters as $key=>$value){ ?>
-                    <tr>
-                        <td><img class="" src="img/characters/<?php echo strtolower(str_replace("ñ", "n", str_replace(" ", "_",$value['name']))) ; ?>.jpg"></td>
-                        <td><?php echo $value['name'] ; ?></td>
-                        <td><input type="radio" name="<?php echo $value['id'] ; ?>" value="1" /></td>
-                        <td><input type="radio" name="<?php echo $value['id'] ; ?>" value="2" /></td>
-                        <td><input type="radio" name="<?php echo $value['id'] ; ?>" value="3" /></td>
-                    </tr>
-                <?php } ?>
-            </table>
-            <table class="table">
-                <tr>
-                    <td>¿Daenerys esta embarazada?</td>
-                    <td>
-                        si <input type="radio" name="DaenerysPrecnancy" value="true" />
-                        no <input type="radio" name="DaenerysPrecnancy" value="false" />
-                    </td>
-                </tr>
-                <tr>
-                    <td>¿Arya completa su lista?</td>
-                    <td>
-                        si <input type="radio" name="AryaList" value="true" />
-                        no <input type="radio" name="AryaList" value="false" />
-                    </td>
-                </tr>
-                <tr>
-                    <td>¿Quien mata al Night King?</td>
-                    <td>
-                        <select name="killNigthking">
-                            <option disabled selected>seleciona...</option>
-                            <?php foreach($characters as $key=>$value){ ?>
-                                <option value="<?php echo $value['id'] ; ?>"><?php echo $value['name'] ; ?></option>
-                            <?php } ?>
-                        </select>
-                    </td>
-                </tr>
-                <tr>
-                    <td>¿Quien se queda con el trono?</td>
-                    <td>
-                        <select name="hasTheThrone">
-                            <option disabled selected>seleciona...</option>
-                            <?php foreach($characters as $key=>$value){ ?>
-                                <option value="<?php echo $value['id'] ; ?>"><?php echo $value['name'] ; ?></option>
-                            <?php } ?>
-                        </select>
-                    </td>
-                </tr>
-            </table>
-            <table>
-                <tr>
-                    <td>
-                        <button type="submit" class="btn btn-primary btn-lg">Enviar</button>
-                    </td>
-                </tr>
-            </table>
-        </form>
+                        <?php foreach($characters as $key=>$value){ ?>
+                            <tr>
+                                <td><img class="" width="150" height="150" src="img/characters/<?php echo strtolower(str_replace("ñ", "n", str_replace(" ", "_",$value['name']))) ; ?>.jpg"></td>
+                                <td><?php echo $value['name'] ; ?></td>
+                                <td class="text-center"><input type="radio" id="1<?php echo $value['id'] ; ?>" name="<?php echo $value['id'] ; ?>" value="1" /><label for="1<?php echo $value['id'] ; ?>" class="radio-holder"></label></td>
+                                <td class="text-center"><input type="radio" id="2<?php echo $value['id'] ; ?>" name="<?php echo $value['id'] ; ?>" value="2" /><label for="2<?php echo $value['id'] ; ?>" class="radio-holder"></label></td>
+                                <td class="text-center"><input type="radio" id="3<?php echo $value['id'] ; ?>" name="<?php echo $value['id'] ; ?>" value="3" /><label for="3<?php echo $value['id'] ; ?>" class="radio-holder"></label></td>
+                            </tr>
+                        <?php } ?>
+                    </table>
+                    <table class="table">
+                        <tr>
+                            <td>¿Daenerys esta embarazada?</td>
+                            <td>
+                                si <input type="radio" name="DaenerysPrecnancy" value="true" />
+                                no <input type="radio" name="DaenerysPrecnancy" value="false" />
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>¿Arya completa su lista?</td>
+                            <td>
+                                si <input type="radio" name="AryaList" value="true" />
+                                no <input type="radio" name="AryaList" value="false" />
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>¿Quien mata al Night King?</td>
+                            <td>
+                                <select name="killNigthking">
+                                    <option disabled selected>seleciona...</option>
+                                    <?php foreach($characters as $key=>$value){ ?>
+                                        <option value="<?php echo $value['id'] ; ?>"><?php echo $value['name'] ; ?></option>
+                                    <?php } ?>
+                                </select>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>¿Quien se queda con el trono?</td>
+                            <td>
+                                <select name="hasTheThrone">
+                                    <option disabled selected>seleciona...</option>
+                                    <?php foreach($characters as $key=>$value){ ?>
+                                        <option value="<?php echo $value['id'] ; ?>"><?php echo $value['name'] ; ?></option>
+                                    <?php } ?>
+                                </select>
+                            </td>
+                        </tr>
+                    </table>
+                    <table>
+                        <tr>
+                            <td>
+                                <button type="submit" class="btn btn-primary btn-lg">Enviar</button>
+                            </td>
+                        </tr>
+                    </table>
+                </form>
             </div>
         </div>
     </div>
