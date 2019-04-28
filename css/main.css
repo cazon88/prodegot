@@ -297,8 +297,115 @@ textarea {
 
 body {
     background: url("../img/bg.jpg");
+    background-size: contain;
+    background-repeat: repeat-x;
+
 }
 
 td{
     vertical-align: middle!important;
+}
+
+.header {
+    -webkit-box-shadow: -2px 6px 5px -6px rgba(0,0,0,0.6);
+    -moz-box-shadow: -2px 6px 5px -6px rgba(0,0,0,0.6);
+    box-shadow: -2px 6px 5px -6px rgba(0,0,0,0.6);
+}
+
+.custom-container {
+    position: relative;
+    height: 50px;
+    width: 50px;
+    display: inline-block;
+}
+
+[type="radio"].custom:checked,
+[type="radio"].custom:not(:checked) {
+    position: absolute;
+    left: -9999px;
+}
+[type="radio"].custom:checked + .radio-holder,
+[type="radio"].custom:not(:checked) + label
+{
+    position: relative;
+    cursor: pointer;
+    line-height: 20px;
+    display: inline-block;
+    color: #666;
+
+}
+[type="radio"].custom:checked + label:before,
+[type="radio"].custom:not(:checked) + label:before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 40px;
+    height: 40px;
+    cursor: pointer;
+    z-index: 2;
+
+}
+[type="radio"].custom:checked + label:after,
+[type="radio"].custom:not(:checked) + label:after {
+    content: '';
+    width: 40px;
+    height: 40px;
+    position: absolute;
+    left: 0;
+    top: 0;
+    border-radius: 100%;
+    background: #2B2B2B;
+    -webkit-transition: all 0.2s ease;
+    transition: all 0.2s ease;
+}
+
+label.alive:before {
+    background: url("../img/icons/alive.svg") no-repeat;
+}
+label.dead:before {
+    background: url("../img/icons/dead.svg") no-repeat;
+}
+
+label.white-walker:before {
+    background: url("../img/icons/whitewalker.svg") no-repeat;
+}
+
+[type="radio"].custom:not(:checked) + label:after {
+    opacity: 0;
+    -webkit-transform: scale(0);
+    transform: scale(0);
+}
+[type="radio"].custom:checked + label:after {
+    opacity: 1;
+    -webkit-transform: scale(1);
+    transform: scale(1);
+}
+
+small {
+    color: #999999;
+}
+
+.header-menu {
+    background: #000000;
+}
+
+.header-menu h5 {
+    color: #FFF;
+}
+
+.logo {
+
+}
+.logo img {
+    max-width: 200px;
+}
+
+.prode {
+    margin-top: 30px;
+}
+
+.prode table {
+    width: 100%;
+    margin-bottom: 20px;
 }

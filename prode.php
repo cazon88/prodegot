@@ -11,12 +11,12 @@ if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
 // Include config file
 require_once "config.php";
 
-$user_id = $_SESSION["id"];
-$sql = "SELECT score FROM users WHERE id = $user_id";
-$result = mysqli_query($link,$sql);
-$row = mysqli_fetch_assoc($result);
+//$user_id = $_SESSION["id"];
+//$sql = "SELECT score FROM users WHERE id = $user_id";
+//$result = mysqli_query($link,$sql);
+//$row = mysqli_fetch_assoc($result);
 
-$user_score = $row["score"];
+$user_score = 0;
 
 $sql = "SELECT id,name FROM characters";
 $result = mysqli_query($link,$sql);
@@ -44,88 +44,91 @@ while($row=mysqli_fetch_assoc($result)) {
         <meta name="theme-color" content="#fafafa">
     </head>
     <body>
-    <div class="container">
-        <div class="row">
-            <div class="col-md-3 col-md-push-3 col-xs-6">
-                <img src="img/logo.png" class="img-responsive">
-            </div>
-            <div class="col-md-4 col-md-push-3">
-                <h4><b><?php echo htmlspecialchars($_SESSION["username"]) . " ($user_score puntos)"; ?></b></h4>
-                <p>
-                    <a href="reset-password.php" class="btn btn-xs btn-warning">Cambiar contrasena</a>
-                    <a href="logout.php" class="btn btn-xs btn-danger">Cerrar sesion</a>
-                </p>
+    <div class="header-menu">
+        <div class="container">
+            <div class="row">
+                <div class="col-xs-6 logo">
+                    <img class="" src="img/logo.png" class="img-responsive">
+                </div>
+                <div class="col-xs-6 text-right">
+                    <h5><b><?php echo htmlspecialchars($_SESSION["username"]) . " ($user_score puntos)"; ?></b></h5>
+                    <p>
+                        <a href="reset-password.php" class="btn btn-xs btn-warning">Cambiar contrasena</a>
+                        <a href="logout.php" class="btn btn-xs btn-danger">Cerrar sesion</a>
+                    </p>
+                </div>
             </div>
         </div>
+    </div>
+    <div class="header">
+        <img height="auto" width="100%" src="img/header.png">
+    </div>
+    <div class="container prode">
         <div class="row">
-            <div class="col-md-6 col-md-push-3">
-                <form data-js="prode" action="response.php">
-            <table class="table">
-                <tr>
-                    <th></th>
-                    <th>Personaje</th>
-                    <th>Vive</th>
-                    <th>Muere</th>
-                    <th>WhiteWalker</th>
-                </tr>
+            <form data-js="prode" action="response.php">
 
                 <?php foreach($characters as $key=>$value){ ?>
-                    <tr>
-                        <td><img class="" src="img/characters/<?php echo strtolower(str_replace("ñ", "n", str_replace(" ", "_",$value['name']))) ; ?>.jpg"></td>
-                        <td><?php echo $value['name'] ; ?></td>
-                        <td><input type="radio" name="<?php echo $value['id'] ; ?>" value="1" /></td>
-                        <td><input type="radio" name="<?php echo $value['id'] ; ?>" value="2" /></td>
-                        <td><input type="radio" name="<?php echo $value['id'] ; ?>" value="3" /></td>
-                    </tr>
+                      <div class="col-md-6">
+                        <table class="">
+                            <tr>
+                                <td class="text-center">
+                                    <img class="" width="120" height="120" src="img/characters/<?php echo strtolower(str_replace("ñ", "n", str_replace(" ", "_",$value['name']))) ; ?>.jpg">
+                                    <br/>
+                                    <small><?php echo $value['name'] ; ?></small>
+                                </td>
+                                <td><div class="custom-container"><input class="custom" type="radio" id="1<?php echo $value['id'] ; ?>" name="<?php echo $value['id'] ; ?>" value="1" /><label for="1<?php echo $value['id'] ; ?>" class="radio-holder alive"></label></div></td>
+                                <td><div class="custom-container"><input class="custom" type="radio" id="2<?php echo $value['id'] ; ?>" name="<?php echo $value['id'] ; ?>" value="2" /><label for="2<?php echo $value['id'] ; ?>" class="radio-holder dead"></label></div></td>
+                                <td><div class="custom-container"><input class="custom" type="radio" id="3<?php echo $value['id'] ; ?>" name="<?php echo $value['id'] ; ?>" value="3" /><label for="3<?php echo $value['id'] ; ?>" class="radio-holder white-walker"></label></div></td>
+                            </tr>
+                        </table>
+                      </div>
                 <?php } ?>
-            </table>
-            <table class="table">
-                <tr>
-                    <td>¿Daenerys esta embarazada?</td>
-                    <td>
-                        si <input type="radio" name="DaenerysPrecnancy" value="true" />
-                        no <input type="radio" name="DaenerysPrecnancy" value="false" />
-                    </td>
-                </tr>
-                <tr>
-                    <td>¿Arya completa su lista?</td>
-                    <td>
-                        si <input type="radio" name="AryaList" value="true" />
-                        no <input type="radio" name="AryaList" value="false" />
-                    </td>
-                </tr>
-                <tr>
-                    <td>¿Quien mata al Night King?</td>
-                    <td>
-                        <select name="killNigthking">
-                            <option disabled selected>seleciona...</option>
-                            <?php foreach($characters as $key=>$value){ ?>
-                                <option value="<?php echo $value['id'] ; ?>"><?php echo $value['name'] ; ?></option>
-                            <?php } ?>
-                        </select>
-                    </td>
-                </tr>
-                <tr>
-                    <td>¿Quien se queda con el trono?</td>
-                    <td>
-                        <select name="hasTheThrone">
-                            <option disabled selected>seleciona...</option>
-                            <?php foreach($characters as $key=>$value){ ?>
-                                <option value="<?php echo $value['id'] ; ?>"><?php echo $value['name'] ; ?></option>
-                            <?php } ?>
-                        </select>
-                    </td>
-                </tr>
-            </table>
-            <table>
-                <tr>
-                    <td>
-                        <button type="submit" class="btn btn-primary btn-lg">Enviar</button>
-                    </td>
-                </tr>
-            </table>
-        </form>
-            </div>
+                <table class="table">
+                    <tr>
+                        <td>¿Daenerys esta embarazada?</td>
+                        <td>
+                            si <input type="radio" name="DaenerysPrecnancy" value="true" />
+                            no <input type="radio" name="DaenerysPrecnancy" value="false" />
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>¿Arya completa su lista?</td>
+                        <td>
+                            si <input type="radio" name="AryaList" value="true" />
+                            no <input type="radio" name="AryaList" value="false" />
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>¿Quien mata al Night King?</td>
+                        <td>
+                            <select name="killNigthking">
+                                <option disabled selected>seleciona...</option>
+                                <?php foreach($characters as $key=>$value){ ?>
+                                    <option value="<?php echo $value['id'] ; ?>"><?php echo $value['name'] ; ?></option>
+                                <?php } ?>
+                            </select>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>¿Quien se queda con el trono?</td>
+                        <td>
+                            <select name="hasTheThrone">
+                                <option disabled selected>seleciona...</option>
+                                <?php foreach($characters as $key=>$value){ ?>
+                                    <option value="<?php echo $value['id'] ; ?>"><?php echo $value['name'] ; ?></option>
+                                <?php } ?>
+                            </select>
+                        </td>
+                    </tr>
+                </table>
+                <table>
+                    <tr>
+                        <td>
+                            <button type="submit" class="btn btn-primary btn-lg">Enviar</button>
+                        </td>
+                    </tr>
+                </table>
+            </form>
         </div>
     </div>
     <script src="js/vendor/modernizr-3.7.1.min.js"></script>
