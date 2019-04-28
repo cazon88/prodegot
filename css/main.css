@@ -316,6 +316,7 @@ td{
     position: relative;
     height: 50px;
     width: 50px;
+    display: inline-block;
 }
 
 [type="radio"].custom:checked,
@@ -379,4 +380,32 @@ label.white-walker:before {
     opacity: 1;
     -webkit-transform: scale(1);
     transform: scale(1);
+}
+
+small {
+    color: #999999;
+}
+
+.header-menu {
+    background: #000000;
+}
+
+.header-menu h5 {
+    color: #FFF;
+}
+
+.logo {
+
+}
+.logo img {
+    max-width: 200px;
+}
+
+.prode {
+    margin-top: 30px;
+}
+
+.prode table {
+    width: 100%;
+    margin-bottom: 20px;
 }
