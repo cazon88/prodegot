@@ -11,12 +11,18 @@ if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
 // Include config file
 require_once "config.php";
 
-//$user_id = $_SESSION["id"];
-//$sql = "SELECT score FROM users WHERE id = $user_id";
-//$result = mysqli_query($link,$sql);
-//$row = mysqli_fetch_assoc($result);
+// TODO - Refactor.
+// Obtains user score
+$user_id = $_SESSION["id"];
+$sql = "SELECT score FROM users WHERE id = $user_id";
+$result = mysqli_query($link,$sql);
+$row = mysqli_fetch_assoc($result);
+$user_score = $row["score"];
 
-$user_score = 0;
+// Check whether user loaded prode already
+$sql = "SELECT * FROM prode WHERE id_user = $user_id";
+$result = mysqli_query($link,$sql);
+$rows = mysqli_num_rows($result);
 
 $sql = "SELECT id,name FROM characters";
 $result = mysqli_query($link,$sql);
