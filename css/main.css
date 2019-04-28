@@ -321,11 +321,11 @@ td{
 [type="radio"]:not(:checked) + label
 {
     position: relative;
-    padding-left: 28px;
     cursor: pointer;
     line-height: 20px;
     display: inline-block;
     color: #666;
+
 }
 [type="radio"]:checked + label:before,
 [type="radio"]:not(:checked) + label:before {
@@ -333,25 +333,38 @@ td{
     position: absolute;
     left: 0;
     top: 0;
-    width: 18px;
-    height: 18px;
+    width: 40px;
+    height: 40px;
     border: 1px solid #ddd;
     border-radius: 100%;
     background: #fff;
+    cursor: pointer;
+
 }
 [type="radio"]:checked + label:after,
 [type="radio"]:not(:checked) + label:after {
     content: '';
-    width: 12px;
-    height: 12px;
-    background: #F87DA9;
+    width: 60px;
+    height: 60px;
     position: absolute;
-    top: 4px;
-    left: 4px;
+    left: -10px;
+    top: -8px;
     border-radius: 100%;
     -webkit-transition: all 0.2s ease;
     transition: all 0.2s ease;
 }
+
+label.alive:after {
+    background: url("../img/icons/alive.svg");
+}
+label.dead:after {
+    background: url("../img/icons/dead.svg");
+}
+
+label.white-walker:after {
+    background: url("../img/icons/whitewalker.svg");
+}
+
 [type="radio"]:not(:checked) + label:after {
     opacity: 0;
     -webkit-transform: scale(0);

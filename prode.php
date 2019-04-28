@@ -80,11 +80,11 @@ while($row=mysqli_fetch_assoc($result)) {
 
                         <?php foreach($characters as $key=>$value){ ?>
                             <tr>
-                                <td><img class="" width="150" height="150" src="img/characters/<?php echo strtolower(str_replace("ñ", "n", str_replace(" ", "_",$value['name']))) ; ?>.jpg"></td>
+                                <td><img class="" width="120" height="120" src="img/characters/<?php echo strtolower(str_replace("ñ", "n", str_replace(" ", "_",$value['name']))) ; ?>.jpg"></td>
                                 <td><?php echo $value['name'] ; ?></td>
-                                <td class="text-center"><input type="radio" id="1<?php echo $value['id'] ; ?>" name="<?php echo $value['id'] ; ?>" value="1" /><label for="1<?php echo $value['id'] ; ?>" class="radio-holder"></label></td>
-                                <td class="text-center"><input type="radio" id="2<?php echo $value['id'] ; ?>" name="<?php echo $value['id'] ; ?>" value="2" /><label for="2<?php echo $value['id'] ; ?>" class="radio-holder"></label></td>
-                                <td class="text-center"><input type="radio" id="3<?php echo $value['id'] ; ?>" name="<?php echo $value['id'] ; ?>" value="3" /><label for="3<?php echo $value['id'] ; ?>" class="radio-holder"></label></td>
+                                <td class="text-center"><input type="radio" id="1<?php echo $value['id'] ; ?>" name="<?php echo $value['id'] ; ?>" value="1" /><label for="1<?php echo $value['id'] ; ?>" class="radio-holder alive"></label></td>
+                                <td class="text-center"><input type="radio" id="2<?php echo $value['id'] ; ?>" name="<?php echo $value['id'] ; ?>" value="2" /><label for="2<?php echo $value['id'] ; ?>" class="radio-holder dead"></label></td>
+                                <td class="text-center"><input type="radio" id="3<?php echo $value['id'] ; ?>" name="<?php echo $value['id'] ; ?>" value="3" /><label for="3<?php echo $value['id'] ; ?>" class="radio-holder white-walker"></label></td>
                             </tr>
                         <?php } ?>
                     </table>
