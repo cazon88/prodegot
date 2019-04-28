@@ -11,7 +11,7 @@ if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
 // Include config file
 require_once "config.php";
 
-$user_id = $_SESSION["id"];
+/*$user_id = $_SESSION["id"];
 $sql = "SELECT score FROM users WHERE id = $user_id";
 
 $result = mysqli_query($link,$sql);
@@ -20,8 +20,8 @@ $row = mysqli_fetch_assoc($result);
 
 $user_score = $row["score"];
 
-$result = mysqli_query($link,$sql);
-
+//$result = mysqli_query($link,$sql);*/
+$user_score = 0;
 
 $sql = "SELECT id,name FROM characters";
 $result = mysqli_query($link,$sql);
@@ -76,7 +76,7 @@ while($row=mysqli_fetch_assoc($result)) {
 
                 <?php foreach($characters as $key=>$value){ ?>
                     <tr>
-                        <td><img class="" src="https://via.placeholder.com/50"></td>
+                        <td><img class="" src="img/characters/<?php echo strtolower(str_replace("ñ", "n", str_replace(" ", "_",$value['name']))) ; ?>.jpg"></td>
                         <td><?php echo $value['name'] ; ?></td>
                         <td><input type="radio" name="<?php echo $value['id'] ; ?>" value="1" /></td>
                         <td><input type="radio" name="<?php echo $value['id'] ; ?>" value="2" /></td>
