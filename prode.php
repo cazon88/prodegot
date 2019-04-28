@@ -58,7 +58,7 @@ while($row=mysqli_fetch_assoc($result)) {
             <div class="col-md-3 col-md-push-2 col-xs-6">
                 <img src="img/logo.png" class="img-responsive">
             </div>
-            <div class="col-md-4 col-md-push-3">
+            <div class="col-md-4 col-md-push-4">
                 <h4><b><?php echo htmlspecialchars($_SESSION["username"]) . " ($user_score puntos)"; ?></b></h4>
                 <p>
                     <a href="reset-password.php" class="btn btn-xs btn-warning">Cambiar contrasena</a>
@@ -67,24 +67,16 @@ while($row=mysqli_fetch_assoc($result)) {
             </div>
         </div>
         <div class="row">
-            <div class="col-md-8 col-md-push-2">
+            <div class="col-md-6 col-md-push-3">
                 <form data-js="prode" action="response.php">
                     <table class="table">
-                        <tr>
-                            <th></th>
-                            <th>Personaje</th>
-                            <th>Vive</th>
-                            <th>Muere</th>
-                            <th>WhiteWalker</th>
-                        </tr>
-
                         <?php foreach($characters as $key=>$value){ ?>
                             <tr>
                                 <td><img class="" width="120" height="120" src="img/characters/<?php echo strtolower(str_replace("ñ", "n", str_replace(" ", "_",$value['name']))) ; ?>.jpg"></td>
                                 <td><?php echo $value['name'] ; ?></td>
-                                <td class="text-center"><input class="custom" type="radio" id="1<?php echo $value['id'] ; ?>" name="<?php echo $value['id'] ; ?>" value="1" /><label for="1<?php echo $value['id'] ; ?>" class="radio-holder alive"></label></td>
-                                <td class="text-center"><input class="custom" type="radio" id="2<?php echo $value['id'] ; ?>" name="<?php echo $value['id'] ; ?>" value="2" /><label for="2<?php echo $value['id'] ; ?>" class="radio-holder dead"></label></td>
-                                <td class="text-center"><input class="custom" type="radio" id="3<?php echo $value['id'] ; ?>" name="<?php echo $value['id'] ; ?>" value="3" /><label for="3<?php echo $value['id'] ; ?>" class="radio-holder white-walker"></label></td>
+                                <td class="text-center"><div class="custom-container"><input class="custom" type="radio" id="1<?php echo $value['id'] ; ?>" name="<?php echo $value['id'] ; ?>" value="1" /><label for="1<?php echo $value['id'] ; ?>" class="radio-holder alive"></label></div></td>
+                                <td class="text-center"><div class="custom-container"><input class="custom" type="radio" id="2<?php echo $value['id'] ; ?>" name="<?php echo $value['id'] ; ?>" value="2" /><label for="2<?php echo $value['id'] ; ?>" class="radio-holder dead"></label></div></td>
+                                <td class="text-center"><div class="custom-container"><input class="custom" type="radio" id="3<?php echo $value['id'] ; ?>" name="<?php echo $value['id'] ; ?>" value="3" /><label for="3<?php echo $value['id'] ; ?>" class="radio-holder white-walker"></label></div></td>
                             </tr>
                         <?php } ?>
                     </table>

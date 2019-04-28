@@ -312,6 +312,12 @@ td{
     box-shadow: -2px 6px 5px -6px rgba(0,0,0,0.6);
 }
 
+.custom-container {
+    position: relative;
+    height: 50px;
+    width: 50px;
+}
+
 [type="radio"].custom:checked,
 [type="radio"].custom:not(:checked) {
     position: absolute;
@@ -335,34 +341,33 @@ td{
     top: 0;
     width: 40px;
     height: 40px;
-    border: 1px solid #ddd;
-    border-radius: 100%;
-    background: #fff;
     cursor: pointer;
+    z-index: 2;
 
 }
 [type="radio"].custom:checked + label:after,
 [type="radio"].custom:not(:checked) + label:after {
     content: '';
-    width: 60px;
-    height: 60px;
+    width: 40px;
+    height: 40px;
     position: absolute;
-    left: -10px;
-    top: -8px;
+    left: 0;
+    top: 0;
     border-radius: 100%;
+    background: #2B2B2B;
     -webkit-transition: all 0.2s ease;
     transition: all 0.2s ease;
 }
 
-label.alive:after {
-    background: url("../img/icons/alive.svg");
+label.alive:before {
+    background: url("../img/icons/alive.svg") no-repeat;
 }
-label.dead:after {
-    background: url("../img/icons/dead.svg");
+label.dead:before {
+    background: url("../img/icons/dead.svg") no-repeat;
 }
 
-label.white-walker:after {
-    background: url("../img/icons/whitewalker.svg");
+label.white-walker:before {
+    background: url("../img/icons/whitewalker.svg") no-repeat;
 }
 
 [type="radio"].custom:not(:checked) + label:after {
