@@ -29,21 +29,21 @@
     $gilly = $_POST["13"];
     $nightking = $_POST["14"];
     $jorah = $_POST["15"];
-    $melissandre = $_POST["16"];
+    $melisandre = $_POST["16"];
     $hound = $_POST["17"];
     $mountain = $_POST["18"];
     $varys = $_POST["19"];
-    $brienne = $_POST["20"]; //FIX
+    $brienne = $_POST["20"];
     $podryck = $_POST["21"];
     $gendry = $_POST["22"];
     $greyworm = $_POST["23"];
     $missandei = $_POST["24"];
     $davos = $_POST["25"];
-//    $bronn = $_POST["26"];
+    $bronn = $_POST["26"];
 
     $user_id = $_SESSION["id"];
 
-    $sql = "INSERT INTO prode (id_user, jon_snow,daenerys_targaryen,sansa_stark,arya_stark,bran_stark,cersei_lannister,jaime_lannister,tyrion_lannister,theon_greyjoy,yara_greyjoy,euron_greyjoy,samwell_tarly,gilly,night_king,jorah_mormont,melisandre,the_hound,the_mountain,lord_varys,brienne_of_tarth,podryck_payne,gendry_baratheon,gray_worm,missandey,davos_seaworth,bronn_stokeworth) VALUES ($user_id,$jon,$danaerys,$sansa,$arya,$bran,$cersei,$jaime,$tyrion,$theon,$yara,$euron,$sam,$gilly,$nightking,$jorah,$melissandre,$hound,$mountain,$varys,$brienne,$podryck,$gendry,$greyworm,$missandei,$davos,0)";
+    $sql = "INSERT INTO prode (id_user, jon_snow,daenerys_targaryen,sansa_stark,arya_stark,bran_stark,cersei_lannister,jaime_lannister,tyrion_lannister,theon_greyjoy,yara_greyjoy,euron_greyjoy,samwell_tarly,gilly,night_king,jorah_mormont,melisandre,the_hound,the_mountain,lord_varys,brienne_of_tarth,podryck_payne,gendry_baratheon,gray_worm,missandey,davos_seaworth,bronn_stokeworth) VALUES ($user_id,$jon,$danaerys,$sansa,$arya,$bran,$cersei,$jaime,$tyrion,$theon,$yara,$euron,$sam,$gilly,$nightking,$jorah,$melisandre,$hound,$mountain,$varys,$brienne,$podryck,$gendry,$greyworm,$missandei,$davos,$bronn)";
 
 $responseSuccess = [
     "status" => 200,

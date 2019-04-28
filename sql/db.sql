@@ -103,6 +103,6 @@ CREATE TABLE `characters` (
 
 LOCK TABLES `characters` WRITE;
 /*!40000 ALTER TABLE `characters` DISABLE KEYS */;
-INSERT INTO `characters` VALUES (1,'Jon Snow',1),(2,'Daenerys Targaryen',1),(3,'Sansa Stark',1),(4,'Arya Stark',1),(5,'Bran Stark',1),(6,'Cersei Lannister',1),(7,'Jaime Lannister',1),(8,'Tyrion Lannister',1),(9,'Theon Greyjoy',1),(10,'Yara Greyjoy',1),(11,'Euron Greyjoy',1),(12,'Samwell Tarly',1),(13,'Gilly',1),(14,'Nigth King',1),(15,'Melisandre',1),(16,'Jorah Mormont',1),(17,'El Perro',1),(18,'La Montaña',1),(19,'Lord Varys',1),(20,'Podryck Payne',1),(21,'Gendry Baratheon',1),(22,'Gusano Gris',1),(23,'Missandei',1),(24,'Davos Seaworth',1),(25,'Bronn Stokeworth',1);
+INSERT INTO `characters` VALUES (1,'Jon Snow',1),(2,'Daenerys Targaryen',1),(3,'Sansa Stark',1),(4,'Arya Stark',1),(5,'Bran Stark',1),(6,'Cersei Lannister',1),(7,'Jaime Lannister',1),(8,'Tyrion Lannister',1),(9,'Theon Greyjoy',1),(10,'Yara Greyjoy',1),(11,'Euron Greyjoy',1),(12,'Samwell Tarly',1),(13,'Gilly',1),(14,'Night King',1),(15,'Melisandre',1),(16,'Jorah Mormont',1),(17,'The Hound',1),(18,'The Mountain',1),(19,'Lord Varys',1),(20,'Brienne of Tarth',1),(21,'Podryck Payne',1),(22,'Gendry Baratheon',1),(23,'Greyworm',1),(24,'Missandei',1),(25,'Davos Seaworth',1),(26,'Bronn Stokeworth',1);
 /*!40000 ALTER TABLE `characters` ENABLE KEYS */;
 UNLOCK TABLES;
