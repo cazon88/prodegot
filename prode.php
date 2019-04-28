@@ -13,7 +13,9 @@ require_once "config.php";
 
 $user_id = $_SESSION["id"];
 $sql = "SELECT score FROM users WHERE id = $user_id";
+
 $result = mysqli_query($link,$sql);
+
 $row = mysqli_fetch_assoc($result);
 
 $user_score = $row["score"];
@@ -27,7 +29,7 @@ $characters = [];
 while($row=mysqli_fetch_assoc($result)) {
     array_push($characters, $row);
 }
-$characters = [$characters[0]];
+//$characters = [$characters[0],$characters[1]];
 ?>
 <!doctype html>
 <html class="no-js" lang="es_AR">
@@ -91,14 +93,14 @@ $characters = [$characters[0]];
                     </td>
                 </tr>
                 <tr>
-                    <td>Arya completa su lista?</td>
+                    <td>¿Arya completa su lista?</td>
                     <td>
                         si <input type="radio" name="AryaList" value="true" />
                         no <input type="radio" name="AryaList" value="false" />
                     </td>
                 </tr>
                 <tr>
-                    <td>¿Quien mata al Nigth King?</td>
+                    <td>¿Quien mata al Night King?</td>
                     <td>
                         <select name="killNigthking">
                             <option disabled selected>seleciona...</option>
