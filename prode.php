@@ -7,57 +7,27 @@ if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
     header("location: login.php");
     exit;
 }
-?>
 
-<?php
-    $characters = [
-        [
-            'id' => '1',
-            'status' => 'live',
-            'name' => 'Jon Snow'
-        ],
-        [
-            'id' => '2',
-            'status' => 'live',
-            'name' => 'Daenerys Targaryen'
-        ],
-        [
-            'id' => '3',
-            'status' => 'live',
-            'name' => 'Sansa Stark'
-        ],
-        [
-            'id' => '4',
-            'status' => 'live',
-            'name' => 'Arya Stark'
-        ],
-        [
-            'id' => '5',
-            'status' => 'live',
-            'name' => 'Bran Stark'
-        ],
-        [
-            'id' => '6',
-            'status' => 'live',
-            'name' => 'Sansa Stark'
-        ],
-        [
-            'id' => '7',
-            'status' => 'live',
-            'name' => 'Cersei Lannister'
-        ],
-        [
-            'id' => '8',
-            'status' => 'live',
-            'name' => 'Jaime Lannister'
-        ],
-        [
-            'id' => '9',
-            'status' => 'live',
-            'name' => 'Tyrion Lannister'
-        ],
+// Include config file
+require_once "config.php";
 
-    ];
+$user_id = $_SESSION["id"];
+$sql = "SELECT score FROM users WHERE id = $user_id";
+$result = mysqli_query($link,$sql);
+$row = mysqli_fetch_assoc($result);
+
+$user_score = $row["score"];
+
+$result = mysqli_query($link,$sql);
+
+
+$sql = "SELECT id,name FROM characters";
+$result = mysqli_query($link,$sql);
+$characters = [];
+while($row=mysqli_fetch_assoc($result)) {
+    array_push($characters, $row);
+}
+$characters = [$characters[0]];
 ?>
 <!doctype html>
 <html class="no-js" lang="es_AR">
@@ -83,7 +53,7 @@ if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
                 <img src="img/logo.png" class="img-responsive">
             </div>
             <div class="col-md-4 col-md-push-3">
-                <h4><b><?php echo htmlspecialchars($_SESSION["username"]); ?></b></h4>
+                <h4><b><?php echo htmlspecialchars($_SESSION["username"]) . " ($user_score puntos)"; ?></b></h4>
                 <p>
                     <a href="reset-password.php" class="btn btn-xs btn-warning">Cambiar contrasena</a>
                     <a href="logout.php" class="btn btn-xs btn-danger">Cerrar sesion</a>
@@ -106,9 +76,9 @@ if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
                     <tr>
                         <td><img class="" src="https://via.placeholder.com/50"></td>
                         <td><?php echo $value['name'] ; ?></td>
-                        <td><input type="radio" name="<?php echo $value['id'] ; ?>" value="live" /></td>
-                        <td><input type="radio" name="<?php echo $value['id'] ; ?>" value="dead" /></td>
-                        <td><input type="radio" name="<?php echo $value['id'] ; ?>" value="whitewalker" /></td>
+                        <td><input type="radio" name="<?php echo $value['id'] ; ?>" value="1" /></td>
+                        <td><input type="radio" name="<?php echo $value['id'] ; ?>" value="2" /></td>
+                        <td><input type="radio" name="<?php echo $value['id'] ; ?>" value="3" /></td>
                     </tr>
                 <?php } ?>
             </table>
@@ -188,7 +158,7 @@ if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
                     data: form.serialize(), // serializes the form's elements.
                     success: function(data)
                     {
-                        alert(data.message); // show response from the php script.
+                        alert(data); // show response from the php script.
                     }
                 });
 

@@ -10,4 +10,3 @@
 	header('Location: '.$uri.'/login.php');
 	exit;
 ?>
-
