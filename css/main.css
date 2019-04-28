@@ -312,13 +312,13 @@ td{
     box-shadow: -2px 6px 5px -6px rgba(0,0,0,0.6);
 }
 
-[type="radio"]:checked,
-[type="radio"]:not(:checked) {
+[type="radio"].custom:checked,
+[type="radio"].custom:not(:checked) {
     position: absolute;
     left: -9999px;
 }
-[type="radio"]:checked + .radio-holder,
-[type="radio"]:not(:checked) + label
+[type="radio"].custom:checked + .radio-holder,
+[type="radio"].custom:not(:checked) + label
 {
     position: relative;
     cursor: pointer;
@@ -327,8 +327,8 @@ td{
     color: #666;
 
 }
-[type="radio"]:checked + label:before,
-[type="radio"]:not(:checked) + label:before {
+[type="radio"].custom:checked + label:before,
+[type="radio"].custom:not(:checked) + label:before {
     content: '';
     position: absolute;
     left: 0;
@@ -341,8 +341,8 @@ td{
     cursor: pointer;
 
 }
-[type="radio"]:checked + label:after,
-[type="radio"]:not(:checked) + label:after {
+[type="radio"].custom:checked + label:after,
+[type="radio"].custom:not(:checked) + label:after {
     content: '';
     width: 60px;
     height: 60px;
@@ -365,12 +365,12 @@ label.white-walker:after {
     background: url("../img/icons/whitewalker.svg");
 }
 
-[type="radio"]:not(:checked) + label:after {
+[type="radio"].custom:not(:checked) + label:after {
     opacity: 0;
     -webkit-transform: scale(0);
     transform: scale(0);
 }
-[type="radio"]:checked + label:after {
+[type="radio"].custom:checked + label:after {
     opacity: 1;
     -webkit-transform: scale(1);
     transform: scale(1);
