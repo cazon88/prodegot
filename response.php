@@ -40,10 +40,12 @@
     $missandei = $_POST["24"];
     $davos = $_POST["25"];
     $bronn = $_POST["26"];
+    $beric = $_POST["27"];
+    $tormund = $_POST["28"];
 
     $user_id = $_SESSION["id"];
 
-    $sql = "INSERT INTO prode (id_user, jon_snow,daenerys_targaryen,sansa_stark,arya_stark,bran_stark,cersei_lannister,jaime_lannister,tyrion_lannister,theon_greyjoy,yara_greyjoy,euron_greyjoy,samwell_tarly,gilly,night_king,jorah_mormont,melisandre,the_hound,the_mountain,lord_varys,brienne_of_tarth,podryck_payne,gendry_baratheon,gray_worm,missandey,davos_seaworth,bronn_stokeworth) VALUES ($user_id,$jon,$danaerys,$sansa,$arya,$bran,$cersei,$jaime,$tyrion,$theon,$yara,$euron,$sam,$gilly,$nightking,$jorah,$melisandre,$hound,$mountain,$varys,$brienne,$podryck,$gendry,$greyworm,$missandei,$davos,$bronn)";
+    $sql = "INSERT INTO prode (id_user, jon_snow,daenerys_targaryen,sansa_stark,arya_stark,bran_stark,cersei_lannister,jaime_lannister,tyrion_lannister,theon_greyjoy,yara_greyjoy,euron_greyjoy,samwell_tarly,gilly,night_king,jorah_mormont,melisandre,the_hound,the_mountain,lord_varys,brienne_of_tarth,podryck_payne,gendry_baratheon,gray_worm,missandey,davos_seaworth,bronn_stokeworth,beric_dondarrion,tormund_giantsbane) VALUES ($user_id,$jon,$danaerys,$sansa,$arya,$bran,$cersei,$jaime,$tyrion,$theon,$yara,$euron,$sam,$gilly,$nightking,$jorah,$melisandre,$hound,$mountain,$varys,$brienne,$podryck,$gendry,$greyworm,$missandei,$davos,$bronn,$beric,$tormund)";
 
 $responseSuccess = [
     "status" => 200,
@@ -51,9 +53,9 @@ $responseSuccess = [
 ];
 
 if(mysqli_query($link, $sql)){
-    echo "OK";
+    echo "Todo OK! Buena suerte!";
 } else{
-    echo"ERROR";
+    echo"Ya has elegido tu jugada!";
 }
 exit;
     mysqli_close($link);
