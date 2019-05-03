@@ -10,6 +10,7 @@ if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
 
 // Include config file
 require_once "config.php";
+require_once "character.php";
 
 // TODO - Refactor.
 // Obtains user score
@@ -24,13 +25,35 @@ $sql = "SELECT * FROM prode WHERE id_user = $user_id";
 $result = mysqli_query($link,$sql);
 $rows = mysqli_num_rows($result);
 
-$sql = "SELECT id,name FROM characters";
+$hasSelection = false;
+
+// Show user's selected options
+if ($rows > 0) {
+
+    $hasSelection = true;
+
+    //Obtain selection
+    $userSelection = mysqli_fetch_row($result);
+}
+
+// Obtain character options
+$sql = "SELECT * FROM status";
+$result = mysqli_query($link,$sql);
+$options = [];
+while($row=mysqli_fetch_assoc($result)) {
+    array_push($options, $row);
+}
+
+// Obtain character list
+$sql = "SELECT * FROM characters";
 $result = mysqli_query($link,$sql);
 $characters = [];
 while($row=mysqli_fetch_assoc($result)) {
-    array_push($characters, $row);
+    $character = new Character($row['id'], $row['name'],$row['short_name'],$row['id_status']);
+    array_push($characters, $character);
 }
-//$characters = [$characters[0],$characters[1]];
+
+$prode = new Prode($characters,$userSelection);
 ?>
 <!doctype html>
 <html class="no-js" lang="es_AR">
@@ -73,18 +96,19 @@ while($row=mysqli_fetch_assoc($result)) {
         <div class="row">
             <form data-js="prode" action="response.php">
 
-                <?php foreach($characters as $key=>$value){ ?>
+                <?php foreach($prode->characters() as $character){ ?>
                       <div class="col-md-6">
                         <table class="">
                             <tr>
                                 <td class="text-center">
-                                    <img class="" width="120" height="120" src="img/characters/<?php echo strtolower(str_replace("ñ", "n", str_replace(" ", "_",$value['name']))) ; ?>.jpg">
+                                    <img class="" width="120" height="120" src="img/characters/<?php echo strtolower(str_replace("ñ", "n", str_replace(" ", "_",$character->name()))) ; ?>.jpg">
                                     <br/>
-                                    <small><?php echo $value['name'] ; ?></small>
+                                    <small><?php echo $character->name(); ?></small>
                                 </td>
-                                <td><div class="custom-container"><input class="custom" type="radio" id="1<?php echo $value['id'] ; ?>" name="<?php echo $value['id'] ; ?>" value="1" /><label for="1<?php echo $value['id'] ; ?>" class="radio-holder alive"></label></div></td>
-                                <td><div class="custom-container"><input class="custom" type="radio" id="2<?php echo $value['id'] ; ?>" name="<?php echo $value['id'] ; ?>" value="2" /><label for="2<?php echo $value['id'] ; ?>" class="radio-holder dead"></label></div></td>
-                                <td><div class="custom-container"><input class="custom" type="radio" id="3<?php echo $value['id'] ; ?>" name="<?php echo $value['id'] ; ?>" value="3" /><label for="3<?php echo $value['id'] ; ?>" class="radio-holder white-walker"></label></div></td>
+                                <?php
+                                foreach ($options as $option) { ?>
+                                    <td><div class="custom-container"><input class="custom" type="radio" id="<?php echo $option['id'].$character->id(); ?>" name="<?php echo $character->id(); ?>" value="<?php echo $option['id'];?>" /><label for="<?php echo $option['id'].$character->id(); ?>" class="radio-holder <?php echo $option['value']; ?>"></label></div></td>
+                                <?php } ?>
                             </tr>
                         </table>
                       </div>
@@ -102,17 +126,6 @@ while($row=mysqli_fetch_assoc($result)) {
                         <td>
                             si <input type="radio" name="AryaList" value="true" />
                             no <input type="radio" name="AryaList" value="false" />
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>¿Quien mata al Night King?</td>
-                        <td>
-                            <select name="killNigthking">
-                                <option disabled selected>seleciona...</option>
-                                <?php foreach($characters as $key=>$value){ ?>
-                                    <option value="<?php echo $value['id'] ; ?>"><?php echo $value['name'] ; ?></option>
-                                <?php } ?>
-                            </select>
                         </td>
                     </tr>
                     <tr>
@@ -167,8 +180,6 @@ while($row=mysqli_fetch_assoc($result)) {
                         alert(data); // show response from the php script.
                     }
                 });
-
-
             });
         })
     </script>
