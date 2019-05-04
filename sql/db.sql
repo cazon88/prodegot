@@ -93,7 +93,7 @@ CREATE TABLE `prode` (
   `tormund` int(11) NOT NULL,
   `created_at` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (`id`),
-  UNIQUE KEY `usuario_UNIQUE` (`id_user`),
+  UNIQUE KEY `id_user` (`id_user`),
   CONSTRAINT `fk_user` FOREIGN KEY (`id_user`) REFERENCES `users` (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
