@@ -74,13 +74,14 @@ $prode = new Prode($user); // TODO - Refactor
                                 <table class="">
                                     <tr>
                                         <td class="text-center">
-                                            <img class="" width="120" height="120" src="img/characters/<?php echo $character->shortName(); ?>.jpg">
-                                            <br/>
+                                            <div class="images">
+                                                <img class=""  id="photo<?php echo $character->id() ?>" width="120" height="120" src="img/characters/<?php echo $character->shortName(); ?>.jpg">
+                                            </div>
                                             <small><?php echo $character->name(); ?></small>
                                         </td>
                                         <?php
                                         foreach ($prode->characterStatusOptions() as $option) { ?>
-                                            <td><div class="custom-container"><input class="custom" type="radio" id="<?php echo $option['id'].$character->id(); ?>" name="<?php echo $character->id(); ?>" value="<?php echo $option['id'];?>" <?php echo $prode->shouldCharacterBeChecked($character,$option['id']) ? "checked" : ""; ?>/><label for="<?php echo $option['id'].$character->id(); ?>" class="radio-holder <?php echo $option['value']; ?>"></label></div></td>
+                                            <td><div class="custom-container"><input class="custom <?php echo $option['value']; ?>" type="radio" id="<?php echo $option['id'].$character->id(); ?>" name="<?php echo $character->id(); ?>" value="<?php echo $option['id'];?>" <?php echo $prode->shouldCharacterBeChecked($character,$option['id']) ? "checked" : ""; ?>/><label for="<?php echo $option['id'].$character->id(); ?>" class="radio-holder <?php echo $option['value']; ?>"></label></div></td>
                                         <?php } ?>
                                     </tr>
                                 </table>
@@ -141,6 +142,16 @@ $prode = new Prode($user); // TODO - Refactor
 
         <script>
             $(document).ready(function() {
+                $('input[type=radio]').click(function (ev) {
+                    var photoid = $('#photo'+($(ev.currentTarget).attr('name')));
+                    photoid.toggleClass('dead', $(ev.currentTarget).hasClass('dead'))
+                    photoid.toggleClass('alive', $(ev.currentTarget).hasClass('alive'))
+                    photoid.toggleClass('white-walker', $(ev.currentTarget).hasClass('white-walker'))
+                                //$('input[type=radio].dead:checked').each(function (i, input) {
+                    //    input.
+                    //});
+                });
+
                 $('[data-js="prode"]').submit(function(e) {
 
                     e.preventDefault(); // avoid to execute the actual submit of the form.

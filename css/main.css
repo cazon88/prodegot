@@ -413,3 +413,26 @@ small {
 .tabs-container {
     margin-bottom: 30px;
 }
+
+.images {
+    position: relative;
+}
+
+.flex {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    flex-direction: column;
+}
+
+small {
+    margin-top: 5px;
+}
+
+img.dead {
+    filter: grayscale(100%);
+}
+
+img.white-walker {
+    filter: sepia(100%) hue-rotate(190deg) saturate(150%);
+}
