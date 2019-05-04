@@ -409,3 +409,7 @@ small {
     width: 100%;
     margin-bottom: 20px;
 }
+
+.tabs-container {
+    margin-bottom: 30px;
+}

@@ -48,27 +48,35 @@ $prode = new Prode($user); // TODO - Refactor
         <img height="auto" width="100%" src="img/header.png">
     </div>
     <div class="container prode">
-        <div class="leaderboard">
-            <table>
-                <tbody>
-                <tr>
-                    <th>Puesto</th>
-                    <th>Usuario</th>
-                    <th>Puntaje</th>
-                </tr>
-                <?php
-                $i = 0; // TODO - Refactor $i
-                foreach($prode->ranking() as $key=>$value){ $i++ ?>
-                    <tr>
-                        <td><?php echo $i; ?></td>
-                        <td><?php echo $value['username']; ?></td>
-                        <td><?php echo $value['score']; ?></td>
-                    </tr>
-                <?php } ?>
-                </tbody>
-            </table>
+        <div class="row tabs-container">
+            <ul data-js="tabs" class="nav nav-tabs">
+                <li role="presentation" class="active"><a data-js="leaderboard" href="#">Leaderboard</a></li>
+                <li role="presentation"><a data-js="prode" href="#">Prode</a></li>
+            </ul>
         </div>
-        <div class="row">
+        <div data-tab="leaderboard" class="row ">
+            <div class="col-md-12">
+                <table class="table">
+                    <tbody>
+                    <tr>
+                        <th>Puesto</th>
+                        <th>Usuario</th>
+                        <th>Puntaje</th>
+                    </tr>
+                    <?php
+                    $i = 0; // TODO - Refactor $i
+                    foreach($prode->ranking() as $key=>$value){ $i++ ?>
+                        <tr>
+                            <td><?php echo $i; ?></td>
+                            <td><?php echo $value['username']; ?></td>
+                            <td><?php echo $value['score']; ?></td>
+                        </tr>
+                    <?php } ?>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        <div  data-tab="prode" class="row hide">
             <form data-js="prode" action="response.php">
                 <?php foreach($prode->characters() as $character){ ?>
                       <div class="col-md-6">
@@ -137,7 +145,6 @@ $prode = new Prode($user); // TODO - Refactor
 
     <script>
         $(document).ready(function() {
-            console.log("ready")
             $('[data-js="prode"]').submit(function(e) {
 
                 e.preventDefault(); // avoid to execute the actual submit of the form.
@@ -154,6 +161,17 @@ $prode = new Prode($user); // TODO - Refactor
                         alert(data); // show response from the php script.
                     }
                 });
+            });
+            const tabButtons =  $('[data-js="tabs"] a');
+            const tabs = $('[data-tab]');
+            tabButtons.click(function (e) {
+                var selected = $(e.currentTarget);
+                tabButtons.parent().removeClass('active');
+                selected.parent().addClass('active');
+                tabs.addClass('hide');
+                var id = '[data-tab="'+ selected.data('js') +'"]';
+                tabs.filter(id).removeClass('hide')
+
             });
         })
     </script>

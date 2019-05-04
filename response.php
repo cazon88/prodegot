@@ -45,7 +45,7 @@
     $beric = $_POST["27"];
     $tormund = $_POST["28"];
 
-    $sql = "INSERT INTO prode (id_user, jon,daenerys,sansa,arya,bran,cersei,jaime,tyrion,theon,yara,euron,samwell,gilly,night_king,jorah,melisandre,hound,mountain,varys,brienne,podryck,gendry,grey_worm,missandei,davos,bronn,beric,tormund) VALUES ($user_id,$jon,$danaerys,$sansa,$arya,$bran,$cersei,$jaime,$tyrion,$theon,$yara,$euron,$sam,$gilly,$nightking,$jorah,$melisandre,$hound,$mountain,$varys,$brienne,$podryck,$gendry,$greyworm,$missandei,$davos,$bronn,$beric,$tormund)";
+    $sql = "INSERT INTO prode (id_user, jon,daenerys,sansa,arya,bran,cersei,jaime,tyrion,theon,yara,euron,samwell,gilly,night_king,jorah,melisandre,hound,mountain,varys,brienne,podryck,gendry,grey_worm,missandei,davos,bronn,beric,tormund) VALUES ($user_id, $jon,$danaerys,$sansa,$arya,$bran,$cersei,$jaime,$tyrion,$theon,$yara,$euron,$sam,$gilly,$nightking,$jorah,$melisandre,$hound,$mountain,$varys,$brienne,$podryck,$gendry,$greyworm,$missandei,$davos,$bronn,$beric,$tormund)";
 
     if(mysqli_query($link, $sql)){
         echo "Todo OK! Buena suerte!";
