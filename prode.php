@@ -26,6 +26,7 @@ $result = mysqli_query($link,$sql);
 $rows = mysqli_num_rows($result);
 
 $hasSelection = false;
+$userSelection = []; // TODO - Refactor
 
 // Show user's selected options
 if ($rows > 0) {
@@ -100,7 +101,7 @@ $prode = new Prode($characters,$userSelection);
                         <table class="">
                             <tr>
                                 <td class="text-center">
-                                    <img class="" width="120" height="120" src="img/characters/<?php echo strtolower(str_replace("ñ", "n", str_replace(" ", "_",$character->name()))) ; ?>.jpg">
+                                    <img class="" width="120" height="120" src="img/characters/<?php echo $character->shortName(); ?>.jpg">
                                     <br/>
                                     <small><?php echo $character->name(); ?></small>
                                 </td>
