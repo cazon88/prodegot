@@ -26,17 +26,8 @@ $options = [];
 while($row=mysqli_fetch_assoc($result)) {
     array_push($options, $row);
 }
-// TODO - Refactor.
-// Obtain character list
-$sql = "SELECT * FROM characters";
-$result = mysqli_query($link,$sql);
-$characters = [];
-while($row=mysqli_fetch_assoc($result)) {
-    $character = new Character($row['id'], $row['name'],$row['short_name'],$row['id_status']);
-    array_push($characters, $character);
-}
 
-$prode = new Prode($characters,$user->selection(),$user);
+$prode = new Prode($user->selection(),$user);
 ?>
 <!doctype html>
 <html class="no-js" lang="es_AR">

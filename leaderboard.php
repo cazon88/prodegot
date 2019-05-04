@@ -20,6 +20,11 @@ $result = mysqli_query($link,$sql);
 while($row=mysqli_fetch_assoc($result)) {
     array_push($ranking, $row);
 }
+/*
+echo "<pre>";
+print_r($ranking);
+echo "</pre>";
+*/
 ?>
 <!doctype html>
 <html class="no-js" lang="es_AR">
