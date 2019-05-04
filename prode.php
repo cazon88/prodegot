@@ -75,7 +75,11 @@ $prode = new Prode($user); // TODO - Refactor
                                     <tr>
                                         <td class="text-center">
                                             <div class="images">
-                                                <img class=""  id="photo<?php echo $character->id() ?>" width="120" height="120" src="img/characters/<?php echo $character->shortName(); ?>.jpg">
+                                                <img class="<?php
+                                                foreach ($prode->characterStatusOptions() as $option) {
+                                                    echo $prode->shouldCharacterBeChecked($character,$option['id']) ? $option['value'] : "";
+                                                }
+                                                ?>"  id="photo<?php echo $character->id() ?>" width="120" height="120" src="img/characters/<?php echo $character->shortName(); ?>.jpg">
                                             </div>
                                             <small><?php echo $character->name(); ?></small>
                                         </td>
