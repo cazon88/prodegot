@@ -95,7 +95,6 @@ $prode = new Prode($characters,$userSelection);
     <div class="container prode">
         <div class="row">
             <form data-js="prode" action="response.php">
-
                 <?php foreach($prode->characters() as $character){ ?>
                       <div class="col-md-6">
                         <table class="">
@@ -133,8 +132,8 @@ $prode = new Prode($characters,$userSelection);
                         <td>
                             <select name="hasTheThrone">
                                 <option disabled selected>seleciona...</option>
-                                <?php foreach($characters as $key=>$value){ ?>
-                                    <option value="<?php echo $value['id'] ; ?>"><?php echo $value['name'] ; ?></option>
+                                <?php foreach($prode->characters() as $character){ ?>
+                                    <option value="<?php echo $character->id() ; ?>"><?php echo $character->name() ; ?></option>
                                 <?php } ?>
                             </select>
                         </td>
