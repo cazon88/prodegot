@@ -91,7 +91,7 @@ CREATE TABLE `prode` (
   `bronn` int(11) NOT NULL,
   `beric` int(11) NOT NULL,
   `tormund` int(11) NOT NULL,
-  `created_at` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP
+  `created_at` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (`id`),
   UNIQUE KEY `usuario_UNIQUE` (`id_user`),
   CONSTRAINT `fk_user` FOREIGN KEY (`id_user`) REFERENCES `users` (`id`)
