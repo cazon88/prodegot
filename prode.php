@@ -15,28 +15,10 @@ require_once "character.php";
 // TODO - Refactor.
 // Obtains user score
 $user_id = $_SESSION["id"];
-$sql = "SELECT score FROM users WHERE id = $user_id";
-$result = mysqli_query($link,$sql);
-$row = mysqli_fetch_assoc($result);
-$user_score = $row["score"];
+$user = new User($user_id,$_SESSION["username"]);
 
-// Check whether user loaded prode already
-$sql = "SELECT * FROM prode WHERE id_user = $user_id";
-$result = mysqli_query($link,$sql);
-$rows = mysqli_num_rows($result);
-
-$hasSelection = false;
-$userSelection = []; // TODO - Refactor
-
-// Show user's selected options
-if ($rows > 0) {
-
-    $hasSelection = true;
-
-    //Obtain selection
-    $userSelection = mysqli_fetch_row($result);
-}
-
+$user_score = $user->score();
+// TODO - Refactor.
 // Obtain character options
 $sql = "SELECT * FROM status";
 $result = mysqli_query($link,$sql);
@@ -44,7 +26,7 @@ $options = [];
 while($row=mysqli_fetch_assoc($result)) {
     array_push($options, $row);
 }
-
+// TODO - Refactor.
 // Obtain character list
 $sql = "SELECT * FROM characters";
 $result = mysqli_query($link,$sql);
@@ -54,7 +36,7 @@ while($row=mysqli_fetch_assoc($result)) {
     array_push($characters, $character);
 }
 
-$prode = new Prode($characters,$userSelection);
+$prode = new Prode($characters,$user->selection(),$user);
 ?>
 <!doctype html>
 <html class="no-js" lang="es_AR">
@@ -81,7 +63,7 @@ $prode = new Prode($characters,$userSelection);
                     <img class="" src="img/logo.png" class="img-responsive">
                 </div>
                 <div class="col-xs-6 text-right">
-                    <h5><b><?php echo htmlspecialchars($_SESSION["username"]) . " ($user_score puntos)"; ?></b></h5>
+                    <h5><b><?php echo $user->printWelcomeMessage(); ?></b></h5>
                     <p>
                         <a href="reset-password.php" class="btn btn-xs btn-warning">Cambiar contrasena</a>
                         <a href="logout.php" class="btn btn-xs btn-danger">Cerrar sesion</a>
@@ -107,7 +89,7 @@ $prode = new Prode($characters,$userSelection);
                                 </td>
                                 <?php
                                 foreach ($options as $option) { ?>
-                                    <td><div class="custom-container"><input class="custom" type="radio" id="<?php echo $option['id'].$character->id(); ?>" name="<?php echo $character->id(); ?>" value="<?php echo $option['id'];?>" /><label for="<?php echo $option['id'].$character->id(); ?>" class="radio-holder <?php echo $option['value']; ?>"></label></div></td>
+                                    <td><div class="custom-container"><input class="custom" type="radio" id="<?php echo $option['id'].$character->id(); ?>" name="<?php echo $character->id(); ?>" value="<?php echo $option['id'];?>" <?php echo $prode->shouldCharacterBeChecked($character,$option['id']) ? "checked" : ""; ?>/><label for="<?php echo $option['id'].$character->id(); ?>" class="radio-holder <?php echo $option['value']; ?>"></label></div></td>
                                 <?php } ?>
                             </tr>
                         </table>

@@ -1,4 +1,5 @@
 <?php
+require_once "config.php";
 
 class character {
 
@@ -22,28 +23,72 @@ class character {
         return  $this->status;
     }
 
-    /* WIP
-    public function userSelectionCorrect($userSelection) {
-
+    public function isSelectionCorrect($selectionForCharacter) {
+        return ($this->status == $selectionForCharacter) ? true : false;
     }
-    */
 }
 
 class prode {
 
-    public function __construct($characters,$userSelection) {
+    public function __construct($characters,$userSelection, $user) {
+        $this->user = $user;
         $this->characters = $characters;
         $this->userSelection = $userSelection;
-
-        /* WIP
-        foreach ($this->characters as $character) {
-
-            }
-        }
-        */
     }
 
     public function characters() {
         return  $this->characters;
+    }
+
+    public function shouldCharacterBeChecked($character, $status_option) {
+        $char_id = $character->id();
+        return ($this->user->getCharacterSelectionByID($char_id) == $status_option) ? true : false;
+    }
+}
+
+class User {
+    public function __construct($user_id,$user_username) {
+        $this->id = $user_id;
+        $this->username = $user_username;
+        $this->score = $this->getScore();
+        $this->selection = $this->getSelection();
+    }
+
+    public function id() {
+        return  $this->id;
+    }
+
+    public function username() {
+        return  $this->username();
+    }
+
+    public function score() {
+        return  $this->score;
+    }
+    public function selection() {
+        return  $this->selection;
+    }
+
+    public function getScore() {
+        $link = mysqli_connect(DB_SERVER,DB_USERNAME,DB_PASSWORD,DB_DATABASE);
+        $sql = "SELECT score FROM users WHERE id = $this->id";
+        $result = mysqli_query($link,$sql);
+        $row = mysqli_fetch_assoc($result);
+        return  $row["score"];
+    }
+
+    public function getSelection() {
+        $link = mysqli_connect(DB_SERVER,DB_USERNAME,DB_PASSWORD,DB_DATABASE);
+        $sql = "SELECT * FROM prode WHERE id_user = $this->id";
+        $result = mysqli_query($link,$sql);
+        return mysqli_fetch_row($result);
+    }
+
+    public function printWelcomeMessage() {
+        return htmlspecialchars($this->username) . " " . "($this->score puntos)";
+    }
+
+    public function getCharacterSelectionByID($character_id) {
+        return $this->selection[$character_id+1]; // DARK! - El index de selections se matchear al char_id (ej: jon es 1 y esta en index 2 de selection)
     }
 }
