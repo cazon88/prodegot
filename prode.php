@@ -78,57 +78,78 @@ $prode = new Prode($user); // TODO - Refactor
         </div>
         <div  data-tab="prode" class="row hide">
             <form data-js="prode" action="response.php">
-                <?php foreach($prode->characters() as $character){ ?>
-                      <div class="col-md-6">
-                        <table class="">
+                <div class="row">
+                    <div class="col-sm-4 col-sm-push-4 text-center">
+                        <table>
                             <tr>
-                                <td class="text-center">
-                                    <img class="" width="120" height="120" src="img/characters/<?php echo $character->shortName(); ?>.jpg">
-                                    <br/>
-                                    <small><?php echo $character->name(); ?></small>
-                                </td>
-                                <?php
-                                foreach ($prode->characterStatusOptions() as $option) { ?>
-                                    <td><div class="custom-container"><input class="custom" type="radio" id="<?php echo $option['id'].$character->id(); ?>" name="<?php echo $character->id(); ?>" value="<?php echo $option['id'];?>" <?php echo $prode->shouldCharacterBeChecked($character,$option['id']) ? "checked" : ""; ?>/><label for="<?php echo $option['id'].$character->id(); ?>" class="radio-holder <?php echo $option['value']; ?>"></label></div></td>
-                                <?php } ?>
+                                <td width="100"><img width="40" src="img/icons/alive.svg"</td>
+                                <td width="100"><img width="40" src="img/icons/dead.svg"</td>
+                                <td width="100"><img width="40" src="img/icons/whitewalker.svg"</td>
+                            </tr>
+                            <tr>
+                                <td><small>Vive</small></td>
+                                <td><small>Muere</small></td>
+                                <td><small>Whitewalker</small></td>
+                            </tr>
+                            <tr>
+                                <td></td>
                             </tr>
                         </table>
-                      </div>
-                <?php } ?>
-                <table class="table">
-                    <tr>
-                        <td>¿Daenerys esta embarazada?</td>
-                        <td>
-                            si <input type="radio" name="DaenerysPrecnancy" value="true" />
-                            no <input type="radio" name="DaenerysPrecnancy" value="false" />
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>¿Arya completa su lista?</td>
-                        <td>
-                            si <input type="radio" name="AryaList" value="true" />
-                            no <input type="radio" name="AryaList" value="false" />
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>¿Quien se queda con el trono?</td>
-                        <td>
-                            <select name="hasTheThrone">
-                                <option disabled selected>seleciona...</option>
-                                <?php foreach($prode->characters() as $character){ ?>
-                                    <option value="<?php echo $character->id() ; ?>"><?php echo $character->name() ; ?></option>
-                                <?php } ?>
-                            </select>
-                        </td>
-                    </tr>
-                </table>
-                <table>
-                    <tr>
-                        <td>
-                            <button type="submit" class="btn btn-primary btn-lg">Enviar</button>
-                        </td>
-                    </tr>
-                </table>
+                    </div>
+                </div>
+                <div class="row">
+                    <?php foreach($prode->characters() as $character){ ?>
+                          <div class="col-md-6">
+                            <table class="">
+                                <tr>
+                                    <td class="text-center">
+                                        <img class="" width="120" height="120" src="img/characters/<?php echo $character->shortName(); ?>.jpg">
+                                        <br/>
+                                        <small><?php echo $character->name(); ?></small>
+                                    </td>
+                                    <?php
+                                    foreach ($prode->characterStatusOptions() as $option) { ?>
+                                        <td><div class="custom-container"><input class="custom" type="radio" id="<?php echo $option['id'].$character->id(); ?>" name="<?php echo $character->id(); ?>" value="<?php echo $option['id'];?>" <?php echo $prode->shouldCharacterBeChecked($character,$option['id']) ? "checked" : ""; ?>/><label for="<?php echo $option['id'].$character->id(); ?>" class="radio-holder <?php echo $option['value']; ?>"></label></div></td>
+                                    <?php } ?>
+                                </tr>
+                            </table>
+                          </div>
+                    <?php } ?>
+                    <table class="table">
+                        <tr>
+                            <td>¿Daenerys esta embarazada?</td>
+                            <td>
+                                si <input type="radio" name="DaenerysPrecnancy" value="true" />
+                                no <input type="radio" name="DaenerysPrecnancy" value="false" />
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>¿Arya completa su lista?</td>
+                            <td>
+                                si <input type="radio" name="AryaList" value="true" />
+                                no <input type="radio" name="AryaList" value="false" />
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>¿Quien se queda con el trono?</td>
+                            <td>
+                                <select name="hasTheThrone">
+                                    <option disabled selected>seleciona...</option>
+                                    <?php foreach($prode->characters() as $character){ ?>
+                                        <option value="<?php echo $character->id() ; ?>"><?php echo $character->name() ; ?></option>
+                                    <?php } ?>
+                                </select>
+                            </td>
+                        </tr>
+                    </table>
+                    <table>
+                        <tr>
+                            <td>
+                                <button type="submit" class="btn btn-primary btn-lg">Enviar</button>
+                            </td>
+                        </tr>
+                    </table>
+                </div>
             </form>
         </div>
     </div>
