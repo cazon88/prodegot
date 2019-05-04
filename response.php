@@ -14,6 +14,8 @@
     // Include config file
     require_once "config.php";
 
+    $user_id = $_SESSION["id"];
+
     $jon = $_POST["1"];
     $danaerys = $_POST["2"];
     $sansa = $_POST["3"];
@@ -43,31 +45,25 @@
     $beric = $_POST["27"];
     $tormund = $_POST["28"];
 
-    $user_id = $_SESSION["id"];
-$sql = "INSERT INTO prode (id_user, jon_snow,daenerys_targaryen,sansa_stark,arya_stark,bran_stark,cersei_lannister,jaime_lannister,tyrion_lannister,theon_greyjoy,yara_greyjoy,euron_greyjoy,samwell_tarly,gilly,night_king,jorah_mormont,melisandre,the_hound,the_mountain,lord_varys,brienne_of_tarth,podryck_payne,gendry_baratheon,gray_worm,missandey,davos_seaworth,bronn_stokeworth,beric_dondarrion,tormund_giantsbane) VALUES ($user_id,$jon,$danaerys,$sansa,$arya,$bran,$cersei,$jaime,$tyrion,$theon,$yara,$euron,$sam,$gilly,$nightking,$jorah,$melisandre,$hound,$mountain,$varys,$brienne,$podryck,$gendry,$greyworm,$missandei,$davos,$bronn,$beric,$tormund)";
-//INSERT INTO prode (id_user, jon,daenerys,sansa,arya,bran,cersei,jaime,tyrion,theon,yara,euron,samwell,gilly,night_king,jorah,melisandre,hound,mountain,varys,brienne,podryck,gendry,grey_worm,missandei,davos,bronn,beric,tormund) VALUES (1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1)
-$responseSuccess = [
-    "status" => 200,
-    "message" => "tu respuesta fue guardada"
-];
+    $sql = "INSERT INTO prode (id_user, jon,daenerys,sansa,arya,bran,cersei,jaime,tyrion,theon,yara,euron,samwell,gilly,night_king,jorah,melisandre,hound,mountain,varys,brienne,podryck,gendry,grey_worm,missandei,davos,bronn,beric,tormund) VALUES ($user_id,$jon,$danaerys,$sansa,$arya,$bran,$cersei,$jaime,$tyrion,$theon,$yara,$euron,$sam,$gilly,$nightking,$jorah,$melisandre,$hound,$mountain,$varys,$brienne,$podryck,$gendry,$greyworm,$missandei,$davos,$bronn,$beric,$tormund)";
 
+    if(mysqli_query($link, $sql)){
+        echo "Todo OK! Buena suerte!";
+    } else{
+        echo"No puedes volver a elegir tu jugada!";
+    }
+    exit;
 
-if(mysqli_query($link, $sql)){
-    echo "Todo OK! Buena suerte!";
-} else{
-    echo"Ya has elegido tu jugada!";
-}
-exit;
     mysqli_close($link);
-
-
+    $responseSuccess = [
+        "status" => 200,
+        "message" => "Tu respuesta fue guardada"
+    ];
 
     $responseError = [
         "status" => 500,
         "message" => "Ups I dit it again"
     ];
-
-    //add condition
 
     header("Content-type: application/json; charset=utf-8");
     echo json_encode($responseSuccess);
