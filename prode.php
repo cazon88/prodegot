@@ -45,7 +45,7 @@ $prode = new Prode($user); // TODO - Refactor
         </div>
     </div>
     <div class="header">
-        <img height="auto" width="100%" src="img/header.png">
+        <img height="auto" width="100%" src="img/header.jpg">
     </div>
     <div class="container prode">
         <div class="row tabs-container">
