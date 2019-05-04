@@ -8,26 +8,10 @@ if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
     exit;
 }
 
-// Include config file
-require_once "config.php";
 require_once "character.php";
 
-// TODO - Refactor.
-// Obtains user score
-$user_id = $_SESSION["id"];
-$user = new User($user_id,$_SESSION["username"]);
-
-$user_score = $user->score();
-// TODO - Refactor.
-// Obtain character options
-$sql = "SELECT * FROM status";
-$result = mysqli_query($link,$sql);
-$options = [];
-while($row=mysqli_fetch_assoc($result)) {
-    array_push($options, $row);
-}
-
-$prode = new Prode($user->selection(),$user);
+$user = new User($_SESSION["id"],$_SESSION["username"]);
+$prode = new Prode($user); // TODO - Refactor
 ?>
 <!doctype html>
 <html class="no-js" lang="es_AR">
@@ -36,11 +20,8 @@ $prode = new Prode($user->selection(),$user);
         <title></title>
         <meta name="description" content="">
         <meta name="viewport" content="width=device-width, initial-scale=1">
-
         <link rel="manifest" href="site.webmanifest">
         <link rel="apple-touch-icon" href="icon.png">
-        <!-- Place favicon.ico in the root directory -->
-
         <link rel="stylesheet" href="css/normalize.css">
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.css">
         <link rel="stylesheet" href="css/main.css">
@@ -67,6 +48,26 @@ $prode = new Prode($user->selection(),$user);
         <img height="auto" width="100%" src="img/header.png">
     </div>
     <div class="container prode">
+        <div class="leaderboard">
+            <table>
+                <tbody>
+                <tr>
+                    <th>Puesto</th>
+                    <th>Usuario</th>
+                    <th>Puntaje</th>
+                </tr>
+                <?php
+                $i = 0; // TODO - Refactor $i
+                foreach($prode->ranking() as $key=>$value){ $i++ ?>
+                    <tr>
+                        <td><?php echo $i; ?></td>
+                        <td><?php echo $value['username']; ?></td>
+                        <td><?php echo $value['score']; ?></td>
+                    </tr>
+                <?php } ?>
+                </tbody>
+            </table>
+        </div>
         <div class="row">
             <form data-js="prode" action="response.php">
                 <?php foreach($prode->characters() as $character){ ?>
@@ -79,7 +80,7 @@ $prode = new Prode($user->selection(),$user);
                                     <small><?php echo $character->name(); ?></small>
                                 </td>
                                 <?php
-                                foreach ($options as $option) { ?>
+                                foreach ($prode->characterStatusOptions() as $option) { ?>
                                     <td><div class="custom-container"><input class="custom" type="radio" id="<?php echo $option['id'].$character->id(); ?>" name="<?php echo $character->id(); ?>" value="<?php echo $option['id'];?>" <?php echo $prode->shouldCharacterBeChecked($character,$option['id']) ? "checked" : ""; ?>/><label for="<?php echo $option['id'].$character->id(); ?>" class="radio-holder <?php echo $option['value']; ?>"></label></div></td>
                                 <?php } ?>
                             </tr>
@@ -158,4 +159,3 @@ $prode = new Prode($user->selection(),$user);
     </script>
     </body>
 </html>
-

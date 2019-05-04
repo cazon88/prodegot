@@ -52,9 +52,11 @@
     } else{
         echo"No puedes volver a elegir tu jugada!";
     }
-    exit;
 
     mysqli_close($link);
+
+    exit;
+
     $responseSuccess = [
         "status" => 200,
         "message" => "Tu respuesta fue guardada"

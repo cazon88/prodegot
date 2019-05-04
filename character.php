@@ -30,13 +30,15 @@ class character {
 
 class prode {
 
-    private $ranking;
+    private $user;
     private $characters;
+    private $userSelection;
+    private $ranking;
 
-    public function __construct($userSelection, $user) {
+    public function __construct($user) {
         $this->user = $user;
         $this->characters = $this->getCharacters();
-        $this->userSelection = $userSelection;
+        $this->userSelection = $user->selection();
         $this->ranking = $this->getRanking();
     }
 
@@ -64,6 +66,8 @@ class prode {
             array_push($ranking, $row);
         }
 
+        mysqli_close($link);
+
         return  $ranking;
     }
 
@@ -79,7 +83,28 @@ class prode {
             array_push($characters, $character);
         }
 
+        mysqli_close($link);
+
         return $characters;
+    }
+
+    public function characterStatusOptions() {
+        $options = [];
+
+        $link = mysqli_connect(DB_SERVER,DB_USERNAME,DB_PASSWORD,DB_DATABASE);
+        $sql = "SELECT * FROM status";
+        $result = mysqli_query($link,$sql);
+        while($row=mysqli_fetch_assoc($result)) {
+            array_push($options, $row);
+        }
+
+        mysqli_close($link);
+
+        return $options;
+    }
+
+    public function updateAllScores() {
+        return $this->user->updateScore($this->characters);
     }
 }
 
@@ -111,6 +136,7 @@ class User {
         $sql = "SELECT score FROM users WHERE id = $this->id";
         $result = mysqli_query($link,$sql);
         $row = mysqli_fetch_assoc($result);
+        mysqli_close($link);
         return  $row["score"];
     }
 
@@ -118,6 +144,7 @@ class User {
         $link = mysqli_connect(DB_SERVER,DB_USERNAME,DB_PASSWORD,DB_DATABASE);
         $sql = "SELECT * FROM prode WHERE id_user = $this->id";
         $result = mysqli_query($link,$sql);
+        mysqli_close($link);
         return mysqli_fetch_row($result);
     }
 
@@ -127,5 +154,22 @@ class User {
 
     public function getCharacterSelectionByID($character_id) {
         return $this->selection[$character_id+1]; // DARK! - El index de selections se matchear al char_id (ej: jon es 1 y esta en index 2 de selection)
+    }
+
+    public function updateScore($characters) {
+        $score = 0;
+
+        foreach ($characters as $character) {
+           $score = ($character->isSelectionCorrect($this->getCharacterSelectionByID($character->id()))) ? $score+1 : $score;
+        }
+
+        $link = mysqli_connect(DB_SERVER,DB_USERNAME,DB_PASSWORD,DB_DATABASE);
+        $sql = "UPDATE users SET score = $score WHERE id = $this->id;";
+
+        if (mysqli_query($link, $sql)) {
+            echo "Record updated successfully\n";
+        } else {
+            echo "Error updating record: " . mysqli_error($link) . "\n";
+        }
     }
 }

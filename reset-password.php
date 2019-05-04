@@ -8,9 +8,6 @@ if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
     exit;
 }
  
-// Include config file
-require_once "config.php";
- 
 // Define variables and initialize with empty values
 $new_password = $confirm_password = "";
 $new_password_err = $confirm_password_err = "";
@@ -98,7 +95,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
             </div>
             <div class="form-group">
                 <input type="submit" class="btn btn-primary" value="Enviar">
-                <a class="btn btn-link" href="welcome.php">Cancelar</a>
+                <a class="btn btn-link" href="prode.php">Cancelar</a>
             </div>
         </form>
     </div>    
