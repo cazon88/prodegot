@@ -147,16 +147,39 @@ $prode = new Prode($user); // TODO - Refactor
 
                     var form = $(this);
                     var url = form.attr('action');
-
-                    $.ajax({
-                        type: "POST",
-                        url: url,
-                        data: form.serialize(), // serializes the form's elements.
-                        success: function(data)
-                        {
-                            alert(data); // show response from the php script.
+                    var empty = [];
+                    
+                    $('input[type=radio]').each(function (i, input) {
+                        var name = $(input).attr('name')
+                            if (empty.indexOf(name) == -1) { 
+                                empty.push(name);
+                            }
                         }
-                    });
+                    );
+
+                    $('input[type=radio]:checked').each(function (i, input) {
+                            var name = $(input).attr('name')
+                            if (empty.indexOf(name) !== -1) { 
+                                empty.splice(empty.indexOf(name), 1)
+                            }
+                        }
+                    );
+
+                    if (empty.length !== 0) {
+                        alert('Recorda llenar todos los campos! :)');   
+                    }
+                    else {
+                        $.ajax({
+                            type: "POST",
+                            url: url,
+                            data: form.serialize(), // serializes the form's elements.
+                            success: function(data)
+                            {
+                                alert(data); // show response from the php script.
+                            }
+                        });
+                    }      
+             
                 });
                 const tabButtons =  $('[data-js="tabs"] a');
                 const tabs = $('[data-tab]');
