@@ -61,7 +61,7 @@ CREATE TABLE `users` (
 
 DROP TABLE IF EXISTS `prode`;
 CREATE TABLE `prode` (
-  `id` int(11) NOT NULL,
+  `id` int(11) NOT NULL AUTO_INCREMENT,
   `id_user` int(11) NOT NULL,
   `jon` int(11) NOT NULL,
   `daenerys` int(11) NOT NULL,
@@ -95,7 +95,7 @@ CREATE TABLE `prode` (
   PRIMARY KEY (`id`),
   UNIQUE KEY `id_user` (`id_user`),
   CONSTRAINT `fk_user` FOREIGN KEY (`id_user`) REFERENCES `users` (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB DEFAULT CHARSET=latin1  AUTO_INCREMENT=1;
 
 DROP TABLE IF EXISTS `characters`;
 CREATE TABLE `characters` (
