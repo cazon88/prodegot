@@ -84,9 +84,14 @@ $prode = new Prode($user); // TODO - Refactor
                                             <small><?php echo $character->name(); ?></small>
                                         </td>
                                         <?php
-                                        if (false) {
-
-                                        } else {
+                                        if ($character->locked()) { ?>
+                                            <td>
+                                                <div class="custom-container" style="display: none">
+                                                    <input class="custom <?php echo "4"; ?>" type="radio" id="<?php echo "4".$character->id(); ?>" name="<?php echo $character->shortName(); ?>" value="4" <?php echo "checked"; ?>/>
+                                                    <label for="<?php echo "4".$character->id(); ?>" class="radio-holder <?php echo "4"; ?>"></label>
+                                                </div>
+                                            </td>
+                                        <?php } else {
 
                                         foreach ($prode->characterStatusOptions() as $option) { ?>
                                             <td>

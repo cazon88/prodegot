@@ -3,11 +3,12 @@ require_once "config.php";
 
 class character {
 
-    public function __construct($char_id, $name, $shortName,$status) {
+    public function __construct($char_id, $name, $shortName,$status,$locked) {
         $this->id = $char_id;
         $this->name = $name;
         $this->shortName = $shortName;
         $this->status = $status;
+        $this->locked = $locked;
     }
 
     public function id() {
@@ -21,6 +22,9 @@ class character {
     }
     public function status() {
         return  $this->status;
+    }
+    public function locked() {
+        return  $this->locked;
     }
 
     public function isSelectionCorrect($selectionForCharacter) {
@@ -79,7 +83,7 @@ class prode {
         $result = mysqli_query($link,$sql);
 
         while($row=mysqli_fetch_assoc($result)) {
-            $character = new Character($row['id'], $row['name'],$row['short_name'],$row['id_status']);
+            $character = new Character($row['id'], $row['name'],$row['short_name'],$row['id_status'],$row['locked']);
             array_push($characters, $character);
         }
 
@@ -95,6 +99,9 @@ class prode {
         $sql = "SELECT * FROM status";
         $result = mysqli_query($link,$sql);
         while($row=mysqli_fetch_assoc($result)) {
+            if ($row['id'] == 4) { // La opcion 4 es -empty- y no deberia mostrarse
+                continue;
+            }
             array_push($options, $row);
         }
 
