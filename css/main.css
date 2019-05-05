@@ -459,6 +459,7 @@ img.white-walker {
     font-weight: 600;
     color: #2b2d30;
     border-radius: 0 0 4px 4px;
+    transition: background 100ms ease-in;
 }
 
 .nav.nav-tabs {
@@ -489,8 +490,58 @@ img.white-walker {
 }
 
 .crown-custom {
-    color: rgb(245, 217, 54);
+    color: #edc733;
     font-size: 16px;
     vertical-align: baseline;    
     margin-right: 2px;
+}
+
+.dice-custom {
+    color: #c92f2b;
+    font-size: 16px;
+    vertical-align: baseline;    
+    margin-right: 2px;
+}
+
+.leaderboard {
+    display: flex;
+    justify-content: center;
+    padding: 0;
+    width: 750px;
+    border-radius: 5px;
+    margin-top: 50px;
+}
+
+
+.leaderboard table {
+    margin: 0;
+    border-collapse: separate;
+    border-spacing: 0px 5px;
+}
+
+.leader-table {
+    width: 725px;
+}
+
+.leaderboard .table > tbody > tr > th,  .leaderboard .table > tbody > tr > td {
+    border: 0;
+    vertical-align: baseline;
+}
+
+.leaderboard .table > tbody > tr:not(:first-child) {
+    border-radius: 5px;
+    -webkit-box-shadow: 5px 0px 29px -10px rgba(189,187,189,1);
+    -moz-box-shadow: 5px 0px 29px -10px rgba(189,187,189,1);
+    box-shadow: 5px 0px 29px -10px rgba(189,187,189,1);
+}
+
+.leaderboard tr:first-child {
+    height: 30px;
+}
+
+.leaderboard .table tr:not(:first-child) {
+    margin-top: 25px;
+    width: 98%;
+    height: 60px;
+    background: #c4e0e9;
 }
