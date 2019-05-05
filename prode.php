@@ -79,7 +79,7 @@ $prode = new Prode($user); // TODO - Refactor
                                                 foreach ($prode->characterStatusOptions() as $option) {
                                                     echo $prode->shouldCharacterBeChecked($character,$option['id']) ? $option['value'] : "";
                                                 }
-                                                ?>"  id="photo<?php echo $character->id() ?>" width="120" height="120" src="img/characters/<?php echo $character->shortName(); ?>.jpg">
+                                                ?>"  id="photo<?php echo $character->shortName() ?>" width="120" height="120" src="img/characters/<?php echo $character->shortName(); ?>.jpg">
                                             </div>
                                             <small><?php echo $character->name(); ?></small>
                                         </td>
@@ -91,7 +91,7 @@ $prode = new Prode($user); // TODO - Refactor
                                         foreach ($prode->characterStatusOptions() as $option) { ?>
                                             <td>
                                                 <div class="custom-container">
-                                                    <input class="custom <?php echo $option['value']; ?>" type="radio" id="<?php echo $option['id'].$character->id(); ?>" name="<?php echo $character->id(); ?>" value="<?php echo $option['id'];?>" <?php echo $prode->shouldCharacterBeChecked($character,$option['id']) ? "checked" : ""; ?>/>
+                                                    <input class="custom <?php echo $option['value']; ?>" type="radio" id="<?php echo $option['id'].$character->id(); ?>" name="<?php echo $character->shortName(); ?>" value="<?php echo $option['id'];?>" <?php echo $prode->shouldCharacterBeChecked($character,$option['id']) ? "checked" : ""; ?>/>
                                                     <label for="<?php echo $option['id'].$character->id(); ?>" class="radio-holder <?php echo $option['value']; ?>"></label>
                                                 </div>
                                             </td>
