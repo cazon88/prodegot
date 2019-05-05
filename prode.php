@@ -75,7 +75,7 @@ $prode = new Prode($user); // TODO - Refactor
                               <div class="col-md-6">
                                 <table class="">
                                     <tr>
-                                        <td class="text-center">
+                                        <td >
                                             <div class="images">
                                                 <img class="<?php
                                                 foreach ($prode->characterStatusOptions() as $option) {

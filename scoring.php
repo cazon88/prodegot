@@ -19,7 +19,7 @@ class Scoring {
         $result = mysqli_query($link,$sql);
 
         while($row=mysqli_fetch_assoc($result)) {
-            $character = new Character($row['id'], $row['name'],$row['short_name'],$row['id_status']);
+            $character = new Character($row['id'], $row['name'],$row['short_name'],$row['id_status'],$row['locked']);
             array_push($characters, $character);
         }
 
