@@ -489,31 +489,48 @@ img.white-walker {
     padding: 0;
 }
 
+@media (min-width: 360px) {
+    .crown-custom {
+        font-size: 12px;
+    }
+
+    .dice-custom {
+        font-size: 12px;
+    }
+}
+
+@media (min-width: 1024px) {
+    .crown-custom {
+        font-size: 16px;
+    }
+
+    .dice-custom {
+        font-size: 16px;
+    }
+}
+
 .crown-custom {
     color: #edc733;
-    font-size: 16px;
     vertical-align: baseline;    
     margin-right: 2px;
+    transition: font-size 200ms linear;
 }
 
 .dice-custom {
     color: #c92f2b;
-    font-size: 16px;
     vertical-align: baseline;    
     margin-right: 2px;
+    transition: font-size 200ms linear;
 }
 
 .leaderboard {
     display: flex;
     justify-content: center;
     padding: 0;
-    width: 750px;
     border-radius: 5px;
     margin-top: 50px;
-    -webkit-box-shadow: 5px 0px 29px -10px rgba(189,187,189,1);
-    -moz-box-shadow: 5px 0px 29px -10px rgba(189,187,189,1);
-    box-shadow: 5px 0px 29px -10px rgba(189,187,189,1);
     border: solid 1px #c4e0e9;
+    background: linear-gradient(to bottom, rgba(247,247,247,0) 0%, rgba(196,224,233,1) 100%);
 }
 
 
@@ -521,19 +538,32 @@ img.white-walker {
     margin: 0;
 }
 
-.leaderboard .table > tbody > tr > th,  .leaderboard .table > tbody > tr > td {
+.leaderboard .table > tbody > tr > td {
     border-top: solid 1px #c4e0e9;
     vertical-align: baseline;
+}
+
+.leaderboard .table > tbody > tr > th {
+    border: none;
 }
 
 .leaderboard tr:first-child > th {
     height: 30px;
 }
 
-.leaderboard .table tr {
+.leaderboard .table tr td {
     height: 60px;
     color: black;
     text-align: center;
+}
+
+.leaderboard .table tr th {
+    text-align: center;
+    height: 30px;
+}
+
+.leader-table {
+    width: 100%;
 }
 
 .leaderboard tr:first-child td:first-child { border-top-left-radius: 5px; }
@@ -545,6 +575,6 @@ img.white-walker {
 .leaderboard .table tr:hover:not(:first-child) {
     width: 98%;
     height: 60px;
-    background: #c4e0e9;
+    background: rgba(196,224,233,1);
 }
 
