@@ -167,7 +167,7 @@ class User {
         $score = 0;
 
         foreach ($characters as $character) {
-           $score = ($character->isSelectionCorrect($this->getCharacterSelectionByID($character->id()))) ? $score+1 : $score;
+           $score = ($character->isSelectionCorrect($this->getCharacterSelectionByID($character->id()))) ? $score+10 : $score;
         }
 
         $link = mysqli_connect(DB_SERVER,DB_USERNAME,DB_PASSWORD,DB_DATABASE);
