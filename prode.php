@@ -74,14 +74,28 @@ $prode = new Prode($user); // TODO - Refactor
                                 <table class="">
                                     <tr>
                                         <td class="text-center">
-                                            <img class="" width="120" height="120" src="img/characters/<?php echo $character->shortName(); ?>.jpg">
-                                            <br/>
+                                            <div class="images">
+                                                <img class="<?php
+                                                foreach ($prode->characterStatusOptions() as $option) {
+                                                    echo $prode->shouldCharacterBeChecked($character,$option['id']) ? $option['value'] : "";
+                                                }
+                                                ?>"  id="photo<?php echo $character->id() ?>" width="120" height="120" src="img/characters/<?php echo $character->shortName(); ?>.jpg">
+                                            </div>
                                             <small><?php echo $character->name(); ?></small>
                                         </td>
                                         <?php
+                                        if (false) {
+
+                                        } else {
+
                                         foreach ($prode->characterStatusOptions() as $option) { ?>
-                                            <td><div class="custom-container"><input class="custom" type="radio" id="<?php echo $option['id'].$character->id(); ?>" name="<?php echo $character->id(); ?>" value="<?php echo $option['id'];?>" <?php echo $prode->shouldCharacterBeChecked($character,$option['id']) ? "checked" : ""; ?>/><label for="<?php echo $option['id'].$character->id(); ?>" class="radio-holder <?php echo $option['value']; ?>"></label></div></td>
-                                        <?php } ?>
+                                            <td>
+                                                <div class="custom-container">
+                                                    <input class="custom <?php echo $option['value']; ?>" type="radio" id="<?php echo $option['id'].$character->id(); ?>" name="<?php echo $character->id(); ?>" value="<?php echo $option['id'];?>" <?php echo $prode->shouldCharacterBeChecked($character,$option['id']) ? "checked" : ""; ?>/>
+                                                    <label for="<?php echo $option['id'].$character->id(); ?>" class="radio-holder <?php echo $option['value']; ?>"></label>
+                                                </div>
+                                            </td>
+                                        <?php }} ?>
                                     </tr>
                                 </table>
                               </div>
@@ -93,23 +107,23 @@ $prode = new Prode($user); // TODO - Refactor
                                 <tr>
                                     <td>¿Daenerys esta embarazada?</td>
                                     <td>
-                                        si <input type="radio" name="DaenerysPrecnancy" value="true" />
-                                        no <input type="radio" name="DaenerysPrecnancy" value="false" />
+                                        SI <input type="radio" name="pregnancy" value="true" />
+                                        NO <input type="radio" name="pregnancy" value="false" />
                                     </td>
                                 </tr>
                                 <tr>
                                     <td>¿Arya completa su lista?</td>
                                     <td>
-                                        si <input type="radio" name="AryaList" value="true" />
-                                        no <input type="radio" name="AryaList" value="false" />
+                                        SI <input type="radio" name="aryalist" value="true" />
+                                        NO <input type="radio" name="aryalist" value="false" />
                                     </td>
                                 </tr>
                                 <tr>
                                     <td>¿Quien se queda con el trono?</td>
                                     <td>
-                                        <select name="hasTheThrone">
-                                            <option disabled selected>seleciona...</option>
-                                            <?php foreach($prode->characters() as $character){ ?>
+                                        <select name="throne">
+                                            <option disabled selected>Seleccione ...</option>
+                                            <?php foreach($prode->characters() as $character){ // TODO - si $character->isDead() excluir? ?>
                                                 <option value="<?php echo $character->id() ; ?>"><?php echo $character->name() ; ?></option>
                                             <?php } ?>
                                         </select>
@@ -141,22 +155,55 @@ $prode = new Prode($user); // TODO - Refactor
 
         <script>
             $(document).ready(function() {
+                $('input[type=radio]').click(function (ev) {
+                    var photoid = $('#photo'+($(ev.currentTarget).attr('name')));
+                    photoid.toggleClass('dead', $(ev.currentTarget).hasClass('dead'))
+                    photoid.toggleClass('alive', $(ev.currentTarget).hasClass('alive'))
+                    photoid.toggleClass('white-walker', $(ev.currentTarget).hasClass('white-walker'))
+                                //$('input[type=radio].dead:checked').each(function (i, input) {
+                    //    input.
+                    //});
+                });
+
                 $('[data-js="prode"]').submit(function(e) {
 
                     e.preventDefault(); // avoid to execute the actual submit of the form.
 
                     var form = $(this);
                     var url = form.attr('action');
-
-                    $.ajax({
-                        type: "POST",
-                        url: url,
-                        data: form.serialize(), // serializes the form's elements.
-                        success: function(data)
-                        {
-                            alert(data); // show response from the php script.
+                    var empty = [];
+                    
+                    $('input[type=radio]').each(function (i, input) {
+                        var name = $(input).attr('name')
+                            if (empty.indexOf(name) == -1) { 
+                                empty.push(name);
+                            }
                         }
-                    });
+                    );
+
+                    $('input[type=radio]:checked').each(function (i, input) {
+                            var name = $(input).attr('name')
+                            if (empty.indexOf(name) !== -1) { 
+                                empty.splice(empty.indexOf(name), 1)
+                            }
+                        }
+                    );
+
+                    if (empty.length !== 0) {
+                        alert('Recorda llenar todos los campos! :)');   
+                    }
+                    else {
+                        $.ajax({
+                            type: "POST",
+                            url: url,
+                            data: form.serialize(), // serializes the form's elements.
+                            success: function(data)
+                            {
+                                alert(data); // show response from the php script.
+                            }
+                        });
+                    }      
+             
                 });
                 const tabButtons =  $('[data-js="tabs"] a');
                 const tabs = $('[data-tab]');
