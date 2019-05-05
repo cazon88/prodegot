@@ -24,11 +24,11 @@ $prode = new Prode($user); // TODO - Refactor
                     <li role="presentation" class="active">
                         <a data-js="leaderboard" href="#"><i class="fas fa-crown crown-custom"></i>Leaderboard</a>
                     </li>
-                    <li role="presentation"><a data-js="prode" href="#">Prode</a></li>
+                    <li role="presentation"><a data-js="prode" href="#"><i class="fas fa-dice-d20 dice-custom"></i>Prode</a></li>
                 </ul>
             </div>
             <div data-tab="leaderboard" class="container leaderboard">
-                <div class="col-md-12">
+                <div class="col-md-12 leader-table">
                     <table class="table">
                         <tbody>
                         <tr>
@@ -153,9 +153,6 @@ $prode = new Prode($user); // TODO - Refactor
                     photoid.toggleClass('dead', $(ev.currentTarget).hasClass('dead'))
                     photoid.toggleClass('alive', $(ev.currentTarget).hasClass('alive'))
                     photoid.toggleClass('white-walker', $(ev.currentTarget).hasClass('white-walker'))
-                                //$('input[type=radio].dead:checked').each(function (i, input) {
-                    //    input.
-                    //});
                 });
 
                 $('[data-js="prode"]').submit(function(e) {
