@@ -18,14 +18,16 @@ $prode = new Prode($user); // TODO - Refactor
     <?php include 'partials/head.php'; ?>
     <body>
         <?php include 'partials/header.php'; ?>
-        <div class="container prode">
+        <div class="prode">
             <div class="row tabs-container">
                 <ul data-js="tabs" class="nav nav-tabs">
-                    <li role="presentation" class="active"><a data-js="leaderboard" href="#">Leaderboard</a></li>
+                    <li role="presentation" class="active">
+                        <a data-js="leaderboard" href="#"><i class="fas fa-crown crown-custom"></i>Leaderboard</a>
+                    </li>
                     <li role="presentation"><a data-js="prode" href="#">Prode</a></li>
                 </ul>
             </div>
-            <div data-tab="leaderboard" class="row ">
+            <div data-tab="leaderboard" class="container leaderboard">
                 <div class="col-md-12">
                     <table class="table">
                         <tbody>
@@ -47,7 +49,7 @@ $prode = new Prode($user); // TODO - Refactor
                     </table>
                 </div>
             </div>
-            <div  data-tab="prode" class="hide">
+            <div  data-tab="prode" class="hide container">
                 <form data-js="prode" action="response.php">
                     <div class="row">
                         <div class="col-sm-4 col-sm-push-4 text-center">
